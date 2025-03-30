@@ -5,88 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>New Coffee</title>
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f3e5d8;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: #fffaf0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #5e3c2e;
-            font-family: 'Georgia', serif;
-        }
-
-        /* Form Styling */
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .form-group {
-            display: flex;
-            align-items: center;
-        }
-
-        label {
-            width: 150px;
-            text-align: right;
-            font-weight: bold;
-            color: #5e3c2e;
-            margin-right: 10px;
-        }
-
-        input, select {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #8b5a2b;
-            border-radius: 5px;
-        }
-
-        button {
-            background-color: #6f4e37;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            margin-top: 15px;
-        }
-
-        button:hover {
-            background-color: #5a3224;
-        }
-
-        .back-link {
-            display: block;
-            margin-top: 15px;
-            color: #6f4e37;
-            text-decoration: none;
+            background-color: #3E2723; /* Dark Espresso */
+            color: white;
+            padding: 15px 0;
+            font-size: 20px;
             font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        .back-link:hover {
-            color: #5a3224;
-        }
+       body {
+           font-family: 'Arial', sans-serif;
+           background-color: #f3e5d8;
+           margin: 0;
+           padding: 20px;
+           text-align: center;
+       }
+
+       .container {
+           max-width: 500px;
+           margin: 0 auto;
+           background: #fffaf0;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+       }
+
+       h1 {
+           color: #5e3c2e;
+           font-family: 'Georgia', serif;
+       }
+
+       /* Form Styling */
+       form {
+           display: flex;
+           flex-direction: column;
+           gap: 10px;
+       }
+
+       .form-group {
+           display: flex;
+           align-items: center;
+       }
+
+       label {
+           width: 150px;
+           text-align: right;
+           font-weight: bold;
+           color: #5e3c2e;
+           margin-right: 10px;
+       }
+
+       input, select {
+           flex: 1;
+           padding: 8px;
+           border: 1px solid #8b5a2b;
+           border-radius: 5px;
+       }
+
+       button {
+           background-color: #6f4e37;
+           color: white;
+           padding: 10px 15px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           font-weight: bold;
+           transition: 0.3s;
+           width: 100%;
+           margin-top: 15px;
+       }
+
+       button:hover {
+           background-color: #5a3224;
+       }
+
+       .back-link {
+           display: block;
+           margin-top: 15px;
+           color: #6f4e37;
+           text-decoration: none;
+           font-weight: bold;
+       }
+
+       .back-link:hover {
+           color: #5a3224;
+       }
     </style>
 </head>
 <body>
 
+<header>Add Coffee</header>
 <div class="container">
     <h1>New Coffee</h1>
 
@@ -117,7 +132,9 @@
 
         <div class="form-group">
             <label for="roastLevel">Roast Level</label>
-            <input type="text" id="roastLevel" name="roastLevel" required>
+            <select id="roastLevel" name="roastLevel" required>
+                <option th:each="level : ${roastLevels}" th:value="${level}" th:text="${level}"></option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -145,7 +162,9 @@
 
         <div class="form-group">
             <label for="brewMethod">Brew Method</label>
-            <input type="text" id="brewMethod" name="brewMethod" required>
+            <select id="brewMethod" name="brewMethod" required>
+                <option th:each="method : ${brewMethods}" th:value="${method}" th:text="${method}"></option>
+            </select>
         </div>
 
         <button type="submit">Save</button>
