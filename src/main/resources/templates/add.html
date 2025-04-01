@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <title>New Coffee</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>New Coffee</h1>
+
+    <form action="/save" method="POST">
+        <div class="form-group">
+            <label for="name">Coffee Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" id="type" name="type" required>
+        </div>
+
+        <div class="form-group">
+            <label for="size">Size</label>
+            <select id="size" name="size" required>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="roastLevel">Roast Level</label>
+            <input type="text" id="roastLevel" name="roastLevel" required>
+        </div>
+
+        <div class="form-group">
+            <label for="origin">Origin</label>
+            <input type="text" id="origin" name="origin" required>
+        </div>
+
+        <div class="form-group">
+            <label for="isDecaf">Decaf</label>
+            <select id="isDecaf" name="isDecaf">
+                <option value="true">Yes</option>
+                <option value="false" selected>No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="number" id="stock" name="stock" required>
+        </div>
+
+        <div class="form-group">
+            <label for="flavorNotes">Flavor Notes</label>
+            <input type="text" id="flavorNotes" name="flavorNotes">
+        </div>
+
+        <div class="form-group">
+            <label for="brewMethod">Brew Method</label>
+            <input type="text" id="brewMethod" name="brewMethod" required>
+        </div>
+
+        <button type="submit">Save</button>
+    </form>
+
+    <a href="/" class="back-link">Back to Coffee List</a>
+</div>
+
+</body>
+</html>
+
+
+

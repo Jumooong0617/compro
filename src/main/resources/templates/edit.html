@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+    <title>Edit Coffee</title>
+
+</head>
+<body>
+
+<div class="container">
+    <h1 th:text="'Edit ' + ${coffee.name}"></h1>
+
+    <form action="/update" method="POST">
+        <input type="hidden" name="id" th:value="${coffee.id}">
+
+        <div class="form-group">
+            <label for="name">Coffee Name</label>
+            <input type="text" id="name" name="name" th:value="${coffee.name}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" id="type" name="type" th:value="${coffee.type}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="size">Choose Size:</label>
+            <select id="size" name="size">
+                <option value="small" th:selected="${coffee.size == 'small'}">Small</option>
+                <option value="medium" th:selected="${coffee.size == 'medium'}">Medium</option>
+                <option value="large" th:selected="${coffee.size == 'large'}">Large</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" step="0.01" th:value="${coffee.price}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="roastLevel">Roast Level</label>
+            <input type="text" id="roastLevel" name="roastLevel" th:value="${coffee.roastLevel}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="origin">Origin</label>
+            <input type="text" id="origin" name="origin" th:value="${coffee.origin}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Decaf</label>
+            <select name="isDecaf" id="isDecaf">
+                <option value="true" th:selected="${coffee.isDecaf}">Yes</option>
+                <option value="false" th:selected="${!coffee.isDecaf}">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="number" id="stock" name="stock" th:value="${coffee.stock}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="flavorNotes">Flavor Notes</label>
+            <input type="text" id="flavorNotes" name="flavorNotes"
+                   th:value="${#strings.listJoin(coffee.flavorNotes, ', ')}">
+        </div>
+
+        <div class="form-group">
+            <label for="brewMethod">Brew Method</label>
+            <input type="text" id="brewMethod" name="brewMethod" th:value="${coffee.brewMethod}" required>
+        </div>
+
+        <button type="submit">Save</button>
+    </form>
+
+    <a href="/" class="back-link">Back to Coffee List</a>
+</div>
+
+</body>
+</html>
+
+
