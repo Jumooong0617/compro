@@ -1,27 +1,21 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0e6d2; /* Warm coffee-inspired background */
-    color: #4d4b47; /* Deep brown text for contrast */
+    background-color: #f0e6d2;
+    color: #4d4b47;
     line-height: 1.6;
     font-size: 16px;
 }
 
+
 .container {
     width: 100%;
-    max-width: 1400px;
     margin: 50px auto;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border: 2px solid #d1b99e;
 }
 
 h1 {
@@ -31,6 +25,7 @@ h1 {
     text-transform: uppercase;
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
+
 }
 
 .coffee-btn {
@@ -54,8 +49,6 @@ h1 {
 .search-bar-container {
     margin-top: 30px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
 }
 
