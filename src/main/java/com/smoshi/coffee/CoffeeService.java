@@ -6,29 +6,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CoffeeService {
-    private List<Coffee> coffees;
-    private final String FILE_NAME = "coffee_database.csv";
+    private List<Coffee> coffees = new ArrayList<>();
+    private static final String FILE_NAME = "coffee_database.csv";
 
     public CoffeeService() {
-        coffees = new ArrayList<>();
         readFromDisk();
     }
 
     public List<Coffee> getCoffees() {
-        return coffees;
+        return new ArrayList<>(coffees); // Return copy to prevent modifications
     }
 
     public void deleteCoffee(int id) {
-        coffees.removeIf(c -> c.getId() == id);
-        writeToDisk();
+        if (coffees.removeIf(c -> c.getId() == id)) {
+            writeToDisk();
+        }
     }
 
     public Coffee getCoffee(int id) {
-        for (Coffee c : coffees) {
-            if (c.getId() == id)
-                return c;
-        }
-        return null;
+        return coffees.stream()
+                .filter(c -> c.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     public void updateCoffee(int id, Coffee update) {
@@ -36,7 +35,7 @@ public class CoffeeService {
             if (coffees.get(i).getId() == id) {
                 coffees.set(i, update);
                 writeToDisk();
-                break;
+                return;
             }
         }
     }
@@ -50,23 +49,27 @@ public class CoffeeService {
         return coffees.isEmpty() ? 0 : coffees.get(coffees.size() - 1).getId();
     }
 
-    public void writeToDisk() {
+    private void writeToDisk() {
+        if (coffees.isEmpty()) return; // Avoid writing empty files
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Coffee c : coffees) {
-                bw.write(c.getId() + "," + c.getName() + "," + c.getType() + "," + c.getSize() + "," + c.getPrice() + "," +
-                        c.getRoastLevel() + "," + c.getOrigin() + "," + c.isDecaf() + "," + c.getStock() + "," +
-                        c.getFlavorNotes() + "," + c.getBrewMethod());
+                String csvLine = String.join(",",
+                        String.valueOf(c.getId()), c.getName(), c.getType(), c.getSize(),
+                        String.valueOf(c.getPrice()), c.getRoastLevel(), c.getOrigin(),
+                        String.valueOf(c.isDecaf()), String.valueOf(c.getStock()), c.getBrewMethod(), c.getFlavorNotes());
+                bw.write(csvLine);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.out.println("Error saving coffee data: " + e.getMessage());
+            System.err.println("Error saving coffee data: " + e.getMessage());
         }
     }
 
-    public void readFromDisk() {
+    private void readFromDisk() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
-            System.out.println("Coffee database file not found.");
+            System.out.println("No existing coffee database found.");
             return;
         }
 
@@ -75,23 +78,39 @@ public class CoffeeService {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
 
-                // Here, flavorNotes is directly treated as a string (comma-separated values)
-                String flavorNotes = data[9];  // Read it as a single string
+                if (data.length < 11) {
+                    System.err.println("Skipping malformed line: " + line);
+                    continue;
+                }
 
-                Coffee c = new Coffee(
-                        Integer.parseInt(data[0]), data[1], data[2], data[3], Double.parseDouble(data[4]),
-                        data[5], data[6], Boolean.parseBoolean(data[7]), Integer.parseInt(data[8]), flavorNotes, data[10]
-                );
-                coffees.add(c);
+                try {
+                    Coffee c = new Coffee();
+                    c.setId(Integer.parseInt(data[0]));
+                    c.setName(data[1]);
+                    c.setType(data[2]);
+                    c.setSize(data[3]);
+                    c.setPrice(Double.parseDouble(data[4]));
+                    c.setRoastLevel(data[5]);
+                    c.setOrigin(data[6]);
+                    c.setDecaf(Boolean.parseBoolean(data[7]));
+                    c.setStock(Integer.parseInt(data[8]));
+                    c.setBrewMethod(data[9]);
+                    c.setFlavorNotes(data[10]); // Keeps flavorNotes as a string
+
+                    coffees.add(c);
+                } catch (NumberFormatException e) {
+                    System.err.println("Skipping invalid entry: " + line);
+                }
             }
+            System.out.println("Coffee data successfully loaded.");
         } catch (IOException e) {
-            System.out.println("Error reading coffee data: " + e.getMessage());
+            System.err.println("Error reading coffee data: " + e.getMessage());
         }
     }
 
     public List<Coffee> searchCoffee(String keyword) {
         if (keyword.trim().isEmpty()) {
-            return coffees;  // If no keyword, return all coffees
+            return new ArrayList<>(coffees);
         }
 
         return coffees.stream()

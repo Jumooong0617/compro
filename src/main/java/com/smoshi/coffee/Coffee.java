@@ -1,7 +1,5 @@
 package com.smoshi.coffee;
 
-import java.util.List;
-
 public class Coffee {
     private int id;
     private String name;
@@ -15,7 +13,11 @@ public class Coffee {
     private String flavorNotes;
     private String brewMethod;
 
-    public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod) {
+    public Coffee() {}
+
+
+    public Coffee(int id, String name, String type, String size, double price, String roastLevel,
+                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -32,7 +34,6 @@ public class Coffee {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -80,7 +81,6 @@ public class Coffee {
     public String getOrigin() {
         return origin;
     }
-
     public void setOrigin(String origin) {
         this.origin = origin;
     }
@@ -96,7 +96,6 @@ public class Coffee {
     public int getStock() {
         return stock;
     }
-
     public void setStock(int stock) {
         this.stock = stock;
     }
@@ -104,7 +103,6 @@ public class Coffee {
     public String getFlavorNotes() {
         return flavorNotes;
     }
-
     public void setFlavorNotes(String flavorNotes) {
         this.flavorNotes = flavorNotes;
     }
@@ -112,7 +110,6 @@ public class Coffee {
     public String getBrewMethod() {
         return brewMethod;
     }
-
     public void setBrewMethod(String brewMethod) {
         this.brewMethod = brewMethod;
     }
