@@ -3,6 +3,7 @@ package com.jumooong.forms;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service class to manage Coffee objects.
@@ -18,6 +19,18 @@ public class CoffeeService {
     public CoffeeService() {
         coffees = new ArrayList<>();
         readFromDisk();
+    }
+
+    public List<Coffee> searchCoffee(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return coffees;
+        }
+
+        return coffees.stream()
+                .filter(s -> s.getName().toLowerCase().contains(keyword.toLowerCase())
+                        || s.getSize().toLowerCase().contains(keyword.toLowerCase())
+                        || s.getOrigin().toLowerCase().contains(keyword.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     /**

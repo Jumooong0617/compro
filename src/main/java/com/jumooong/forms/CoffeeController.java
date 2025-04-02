@@ -12,13 +12,13 @@ import java.util.List;
  * Controller class that handles requests related to coffee inventory management.
  */
 @Controller
-public class FormController {
+public class CoffeeController {
     private final CoffeeService coffeeService;
 
     /**
      * Constructor initializes the coffee service.
      */
-    public FormController() {
+    public CoffeeController() {
         coffeeService = new CoffeeService();
     }
 
@@ -31,7 +31,7 @@ public class FormController {
      */
     @GetMapping("/")
     public String index(@RequestParam(required = false) String search, Model model) {
-        model.addAttribute("coffees", coffeeService.getCoffees());
+        model.addAttribute("coffees", coffeeService.searchCoffee(search));
         return "index";
     }
 
