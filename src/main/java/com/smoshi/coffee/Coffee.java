@@ -15,7 +15,21 @@ public class Coffee {
 
     public Coffee() {}
 
-
+    /**
+     * Parameterized constructor for creating a Coffee object with specified details.
+     *
+     * @param id          Unique identifier for the coffee
+     * @param name        Name of the coffee
+     * @param type        Type of coffee (e.g., espresso, cappuccino)
+     * @param size        Size of the coffee (small, medium, large)
+     * @param price       Price of the coffee
+     * @param roastLevel  Roast level (light, medium, dark)
+     * @param origin      Origin of the coffee beans
+     * @param isDecaf     Whether the coffee is decaffeinated
+     * @param stock       Number of units in stock
+     * @param flavorNotes Description of the flavor profile
+     * @param brewMethod  Preferred brewing method
+     */
     public Coffee(int id, String name, String type, String size, double price, String roastLevel,
                   String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod) {
         this.id = id;

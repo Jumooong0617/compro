@@ -5,24 +5,65 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service class for managing coffee data, including CRUD operations,
+ * search functionality, and persistence to a CSV file.
+ */
 public class CoffeeService {
     private List<Coffee> coffees = new ArrayList<>();
     private static final String FILE_NAME = "coffee_database.csv";
 
+    /**
+     * Constructor that initializes the coffee list by reading from disk.
+     */
     public CoffeeService() {
         readFromDisk();
     }
 
+    /**
+     * Retrieves the list of all coffees.
+     *
+     * @return a copy of the list of coffees to prevent modifications
+     */
     public List<Coffee> getCoffees() {
         return new ArrayList<>(coffees); // Return copy to prevent modifications
     }
 
+    /**
+     * Searches for coffees based on a keyword.
+     *
+     * @param keyword the search keyword
+     * @return a list of coffees that match the keyword in name or type
+     */
+    public List<Coffee> searchCoffee(String keyword) {
+        if (keyword.trim().isEmpty()) {
+            return new ArrayList<>(coffees);
+        }
+
+        return coffees.stream()
+                .filter(c -> c.getName().toLowerCase().contains(keyword.toLowerCase()) ||
+                        c.getType().toLowerCase().contains(keyword.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+
+    /**
+     * Deletes a coffee entry by ID.
+     *
+     * @param id the ID of the coffee to delete
+     */
     public void deleteCoffee(int id) {
         if (coffees.removeIf(c -> c.getId() == id)) {
             writeToDisk();
         }
     }
 
+    /**
+     * Retrieves a coffee entry by ID.
+     *
+     * @param id the ID of the coffee
+     * @return the Coffee object if found, otherwise null
+     */
     public Coffee getCoffee(int id) {
         return coffees.stream()
                 .filter(c -> c.getId() == id)
@@ -30,6 +71,12 @@ public class CoffeeService {
                 .orElse(null);
     }
 
+    /**
+     * Updates a coffee entry by replacing it with a new coffee object.
+     *
+     * @param id the ID of the coffee to update
+     * @param update the new Coffee object
+     */
     public void updateCoffee(int id, Coffee update) {
         for (int i = 0; i < coffees.size(); i++) {
             if (coffees.get(i).getId() == id) {
@@ -40,15 +87,28 @@ public class CoffeeService {
         }
     }
 
+    /**
+     * Adds a new coffee entry.
+     *
+     * @param coffee the Coffee object to add
+     */
     public void addCoffee(Coffee coffee) {
         coffees.add(coffee);
         writeToDisk();
     }
 
+    /**
+     * Gets the last used coffee ID.
+     *
+     * @return the last coffee ID, or 0 if no coffee exists
+     */
     public int getLastId() {
         return coffees.isEmpty() ? 0 : coffees.get(coffees.size() - 1).getId();
     }
 
+    /**
+     * Writes the current coffee list to a CSV file.
+     */
     private void writeToDisk() {
         if (coffees.isEmpty()) return; // Avoid writing empty files
 
@@ -62,10 +122,13 @@ public class CoffeeService {
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println("Error saving coffee data: " + e.getMessage());
+            System.out.println("Error saving coffee data: " + e.getMessage());
         }
     }
 
+    /**
+     * Reads coffee data from a CSV file and loads it into memory.
+     */
     private void readFromDisk() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
@@ -79,7 +142,7 @@ public class CoffeeService {
                 String[] data = line.split(",");
 
                 if (data.length < 11) {
-                    System.err.println("Skipping malformed line: " + line);
+                    System.out.println("Skipping malformed line: " + line);
                     continue;
                 }
 
@@ -99,23 +162,12 @@ public class CoffeeService {
 
                     coffees.add(c);
                 } catch (NumberFormatException e) {
-                    System.err.println("Skipping invalid entry: " + line);
+                    System.out.println("Skipping invalid entry: " + line);
                 }
             }
             System.out.println("Coffee data successfully loaded.");
         } catch (IOException e) {
-            System.err.println("Error reading coffee data: " + e.getMessage());
+            System.out.println("Error reading coffee data: " + e.getMessage());
         }
-    }
-
-    public List<Coffee> searchCoffee(String keyword) {
-        if (keyword.trim().isEmpty()) {
-            return new ArrayList<>(coffees);
-        }
-
-        return coffees.stream()
-                .filter(c -> c.getName().toLowerCase().contains(keyword.toLowerCase()) ||
-                        c.getType().toLowerCase().contains(keyword.toLowerCase()))
-                .collect(Collectors.toList());
     }
 }
