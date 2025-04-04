@@ -46,15 +46,10 @@ public class CoffeeController {
 
     /**
      * Adds new coffee using form
-     * @param model the object
      * @return the form of adding a new coffee
      */
-    @GetMapping("/new")
-    public String create(Model model) {
-        List<String> roastLevels = List.of("Light", "Medium", "Dark");
-        List<String> brewMethods = List.of("Espresso", "French Press", "Drip", "Cold Brew");
-        model.addAttribute("roastLevels", roastLevels);
-        model.addAttribute("brewMethods", brewMethods);
+    @GetMapping("/add")
+    public String add(){
         return "add";
     }
 
@@ -97,13 +92,9 @@ public class CoffeeController {
      */
     @GetMapping("/edit")
     public String edit(@RequestParam int id, Model model) {
-        Coffee coffee = coffeeService.getCoffee(id);
-        if (coffee != null) {
-            List<String> roastLevels = List.of("Light", "Medium", "Dark");
-            List<String> brewMethods = List.of("Drip", "Cold Brew", "Espresso", "French Press");
-            model.addAttribute("roastLevels", roastLevels);
-            model.addAttribute("brewMethods", brewMethods);
-            model.addAttribute("coffee", coffee);
+        Coffee c = coffeeService.getCoffee(id);
+        if(c != null){
+            model.addAttribute("coffee", c);
             return "edit";
         }
         return "redirect:/";

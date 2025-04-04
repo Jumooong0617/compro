@@ -36,15 +36,29 @@ public class CoffeeService {
      * @return a list of coffees that match the keyword in name or type
      */
     public List<Coffee> searchCoffee(String keyword) {
-        if (keyword.trim().isEmpty()) {
+        if (keyword == null || keyword.trim().isEmpty()) {
             return new ArrayList<>(coffees);
         }
 
+        String keywordLower = keyword.toLowerCase().trim();
+
         return coffees.stream()
-                .filter(c -> c.getName().toLowerCase().contains(keyword.toLowerCase()) ||
-                        c.getType().toLowerCase().contains(keyword.toLowerCase()))
+                .filter(c ->
+                        c.getName().toLowerCase().contains(keywordLower) ||
+                                c.getType().toLowerCase().contains(keywordLower) ||
+                                c.getSize().toLowerCase().contains(keywordLower) ||
+                                c.getRoastLevel().toLowerCase().contains(keywordLower) ||
+                                c.getOrigin().toLowerCase().contains(keywordLower) ||
+                                c.getFlavorNotes().toLowerCase().contains(keywordLower) ||
+                                c.getBrewMethod().toLowerCase().contains(keywordLower) ||
+                                (c.isDecaf() && (
+                                        keywordLower.contains("decaf") ||
+                                                keywordLower.contains("decaffeinated")
+                                ))
+                )
                 .collect(Collectors.toList());
     }
+
 
 
     /**
