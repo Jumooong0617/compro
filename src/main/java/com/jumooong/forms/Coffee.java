@@ -1,18 +1,27 @@
 package com.jumooong.forms;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.List;
 
 public class Coffee {
     private int id;
+    @NotBlank (message = "Please enter a name")
     private String name;
+    @NotBlank (message = "Please enter type")
     private String type;
+    @NotBlank (message = "Please select a size")
     private String size;
+    @NotBlank (message = "Please enter a price")
     private double price;
+    @NotBlank (message = "Please select a Roast Level")
     private String roastLevel;
     private String origin;
     private boolean isDecaf;
+    @NotBlank (message = "Please enter stock")
     private int stock;
     private List<String> flavorNotes;
+    @NotBlank (message = "Please select a Brew Method")
     private String brewMethod;
 
     public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
