@@ -1,8 +1,12 @@
 package com.jumooong.forms;
 
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,14 +17,9 @@ import java.util.List;
  */
 @Controller
 public class CoffeeController {
-    private final CoffeeService coffeeService;
 
-    /**
-     * Constructor initializes the coffee service.
-     */
-    public CoffeeController() {
-        coffeeService = new CoffeeService();
-    }
+    @Autowired
+    CoffeeService coffeeService;
 
     /**
      * Displays the list of coffees.
@@ -59,38 +58,17 @@ public class CoffeeController {
         List<String> brewMethods = List.of("Espresso", "French Press", "Drip", "Cold Brew");
         model.addAttribute("roastLevels", roastLevels);
         model.addAttribute("brewMethods", brewMethods);
+        model.addAttribute("newCoffee", new Coffee());
         return "create";
     }
 
-    /**
-     * Saves a new coffee entry.
-     *
-     * @param name        Coffee name.
-     * @param type        Type of coffee (e.g., Arabica, Robusta).
-     * @param size        Size of the coffee (Small, Medium, Large).
-     * @param price       Price of the coffee.
-     * @param roastLevel  Roast level (Light, Medium, Dark).
-     * @param origin      Country of origin.
-     * @param isDecaf     Whether the coffee is decaffeinated.
-     * @param stock       Available stock quantity.
-     * @param flavorNotes List of flavor notes.
-     * @param brewMethod  Preferred brewing method.
-     * @return Redirects to the main page after saving.
-     */
     @PostMapping("/save")
-    public String store(@RequestParam String name,
-                        @RequestParam String type,
-                        @RequestParam String size,
-                        @RequestParam double price,
-                        @RequestParam String roastLevel,
-                        @RequestParam String origin,
-                        @RequestParam boolean isDecaf,
-                        @RequestParam int stock,
-                        @RequestParam List<String> flavorNotes,
-                        @RequestParam String brewMethod) {
+    public String store(@ModelAttribute("newCoffee") @Valid Coffee coffee, BindingResult bindingResult)  {
 
-        Coffee c = new Coffee(coffeeService.getLastId() + 1, name, type, size, price, roastLevel, origin, isDecaf, stock, flavorNotes, brewMethod);
-        coffeeService.addCoffee(c);
+        if(bindingResult.hasErrors()){
+            return "create";
+        }
+        coffeeService.addCoffee(coffee);
         return "redirect:/";
     }
 
@@ -115,22 +93,6 @@ public class CoffeeController {
         return "redirect:/";
     }
 
-    /**
-     * Updates an existing coffee entry.
-     *
-     * @param id          ID of the coffee to update.
-     * @param name        Updated coffee name.
-     * @param type        Updated type of coffee.
-     * @param size        Updated size of coffee.
-     * @param price       Updated price.
-     * @param roastLevel  Updated roast level.
-     * @param origin      Updated country of origin.
-     * @param isDecaf     Updated decaffeination status.
-     * @param stock       Updated stock quantity.
-     * @param flavorNotes Updated list of flavor notes.
-     * @param brewMethod  Updated brew method.
-     * @return Redirects to the main page after updating.
-     */
     @PostMapping("/update")
     public String update(@RequestParam int id,
                          @RequestParam String name,

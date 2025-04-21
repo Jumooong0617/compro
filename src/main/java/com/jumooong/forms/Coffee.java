@@ -1,20 +1,55 @@
 package com.jumooong.forms;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.List;
 
 public class Coffee {
     private int id;
+
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @NotBlank(message = "Type is required")
     private String type;
+
+    @NotBlank(message = "Size is required")
     private String size;
+
+    @NotBlank(message = "Price must be greater than 0")
     private double price;
+
+    @NotBlank(message = "Roast level is required")
     private String roastLevel;
+
     private String origin;
+
     private boolean isDecaf;
+
+    @NotBlank(message = "Stock cannot be negative")
     private int stock;
+
     private List<String> flavorNotes;
+
+    @NotBlank(message = "Brew method is required")
     private String brewMethod;
 
+    // No-argument constructor
+    public Coffee() {
+        // Initializing fields with default values
+        this.name = "";
+        this.type = "";
+        this.size = "";
+        this.price = 0.0;
+        this.roastLevel = "";
+        this.origin = "";
+        this.isDecaf = false;
+        this.stock = 0;
+        this.flavorNotes = null; // or you could initialize it as new ArrayList<>()
+        this.brewMethod = "";
+    }
+
+    // Constructor with all arguments
     public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
         this.id = id;
         this.name = name;
@@ -28,6 +63,8 @@ public class Coffee {
         this.flavorNotes = flavorNotes;
         this.brewMethod = brewMethod;
     }
+
+    // Getters and Setters
 
     public int getId() {
         return id;

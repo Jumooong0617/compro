@@ -1,5 +1,7 @@
 package com.jumooong.forms;
 
+import org.springframework.stereotype.Service;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
  * Service class to manage Coffee objects.
  * Handles CRUD operations and persistence using a CSV file.
  */
+@Service
 public class CoffeeService {
     private List<Coffee> coffees;
     private final String FILE_NAME = "coffee_database.csv";
