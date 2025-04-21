@@ -1,6 +1,6 @@
 package com.jumooong.forms;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 
 import java.util.List;
 
@@ -11,32 +11,32 @@ public class Coffee {
     private String name;
 
     @NotBlank(message = "Type is required")
-    private String type;
+    private String type; // Select: "Arabica", "Robusta"
 
     @NotBlank(message = "Size is required")
-    private String size;
+    private String size; // Select: "Small", "Medium", "Large"
 
-    @NotBlank(message = "Price must be greater than 0")
+    @DecimalMin(value = "0.01", message = "Price must be at least 0.01")
     private double price;
 
     @NotBlank(message = "Roast level is required")
-    private String roastLevel;
+    private String roastLevel; // Select: "Light", "Medium", "Dark"
 
-    private String origin;
+    @NotBlank(message = "Origin is required")
+    private String origin; // Optional
 
-    private boolean isDecaf;
+    private boolean isDecaf; // Optional checkbox
 
-    @NotBlank(message = "Stock cannot be negative")
+    @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
 
-    private List<String> flavorNotes;
+    private List<String> flavorNotes; // Optional checkbox group
 
     @NotBlank(message = "Brew method is required")
-    private String brewMethod;
+    private String brewMethod; // Select: "Drip", "French Press", "Espresso"
 
     // No-argument constructor
     public Coffee() {
-        // Initializing fields with default values
         this.name = "";
         this.type = "";
         this.size = "";
@@ -45,11 +45,11 @@ public class Coffee {
         this.origin = "";
         this.isDecaf = false;
         this.stock = 0;
-        this.flavorNotes = null; // or you could initialize it as new ArrayList<>()
+        this.flavorNotes = null;
         this.brewMethod = "";
     }
 
-    // Constructor with all arguments
+    // All-argument constructor
     public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
         this.id = id;
         this.name = name;
@@ -65,7 +65,6 @@ public class Coffee {
     }
 
     // Getters and Setters
-
     public int getId() {
         return id;
     }

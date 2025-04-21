@@ -4,21 +4,15 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service class to manage Coffee objects.
- * Handles CRUD operations and persistence using a CSV file.
- */
 @Service
 public class CoffeeService {
     private List<Coffee> coffees;
     private final String FILE_NAME = "coffee_database.csv";
 
-    /**
-     * Constructor initializes the coffee list and loads data from disk.
-     */
     public CoffeeService() {
         coffees = new ArrayList<>();
         readFromDisk();
@@ -30,47 +24,25 @@ public class CoffeeService {
         }
 
         return coffees.stream()
-                .filter(s -> s.getName().toLowerCase().contains(keyword.toLowerCase())
-                        || s.getSize().toLowerCase().contains(keyword.toLowerCase())
-                        || s.getOrigin().toLowerCase().contains(keyword.toLowerCase()))
+                .filter(c -> c.getName().toLowerCase().contains(keyword.toLowerCase()) ||
+                        c.getSize().toLowerCase().contains(keyword.toLowerCase()) ||
+                        (c.getOrigin() != null && c.getOrigin().toLowerCase().contains(keyword.toLowerCase())))
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Returns the list of coffee objects.
-     * @return List of Coffee
-     */
     public List<Coffee> getCoffees() {
         return coffees;
     }
 
-    /**
-     * Deletes a coffee entry by ID.
-     * @param id The ID of the coffee to delete
-     */
     public void deleteCoffee(int id) {
         coffees.removeIf(c -> c.getId() == id);
         writeToDisk();
     }
 
-    /**
-     * Retrieves a coffee object by ID.
-     * @param id The ID of the coffee
-     * @return Coffee object or null if not found
-     */
     public Coffee getCoffee(int id) {
-        for (Coffee c : coffees) {
-            if (c.getId() == id)
-                return c;
-        }
-        return null;
+        return coffees.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-    /**
-     * Updates an existing coffee entry.
-     * @param id The ID of the coffee to update
-     * @param update The updated Coffee object
-     */
     public void updateCoffee(int id, Coffee update) {
         for (int i = 0; i < coffees.size(); i++) {
             if (coffees.get(i).getId() == id) {
@@ -81,32 +53,36 @@ public class CoffeeService {
         }
     }
 
-    /**
-     * Adds a new coffee entry to the list and saves to disk.
-     * @param coffee The Coffee object to add
-     */
     public void addCoffee(Coffee coffee) {
+        int nextId = getNextId();
+        coffee.setId(nextId);
+        if (coffee.getFlavorNotes() == null) {
+            coffee.setFlavorNotes(new ArrayList<>());
+        }
         coffees.add(coffee);
         writeToDisk();
     }
 
-    /**
-     * Retrieves the last used ID in the coffee list.
-     * @return The last coffee ID or 0 if list is empty
-     */
-    public int getLastId() {
-        return coffees.isEmpty() ? 0 : coffees.get(coffees.size() - 1).getId();
+    public int getNextId() {
+        return coffees.stream().mapToInt(Coffee::getId).max().orElse(0) + 1;
     }
 
-    /**
-     * Writes the coffee list to a CSV file for persistence.
-     */
     public void writeToDisk() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Coffee c : coffees) {
-                bw.write(c.getId() + "," + c.getName() + "," + c.getType() + "," + c.getSize() + "," + c.getPrice() + "," +
-                        c.getRoastLevel() + "," + c.getOrigin() + "," + c.isDecaf() + "," + c.getStock() + "," +
-                        String.join(";", c.getFlavorNotes()) + "," + c.getBrewMethod());
+                bw.write(String.join(",", List.of(
+                        String.valueOf(c.getId()),
+                        escape(c.getName()),
+                        escape(c.getType()),
+                        escape(c.getSize()),
+                        String.valueOf(c.getPrice()),
+                        escape(c.getRoastLevel()),
+                        escape(c.getOrigin() != null ? c.getOrigin() : ""),
+                        String.valueOf(c.isDecaf()),
+                        String.valueOf(c.getStock()),
+                        escape(String.join(";", c.getFlavorNotes() != null ? c.getFlavorNotes() : Collections.emptyList())),
+                        escape(c.getBrewMethod())
+                )));
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -114,9 +90,6 @@ public class CoffeeService {
         }
     }
 
-    /**
-     * Reads coffee data from a CSV file and populates the coffee list.
-     */
     public void readFromDisk() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
@@ -127,17 +100,24 @@ public class CoffeeService {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                List<String> flavorNotes = List.of(data[9].split(";"));
+                String[] data = line.split(",", -1); // -1 keeps empty strings
+                if (data.length < 11) continue;
 
-                Coffee c = new Coffee(
-                        Integer.parseInt(data[0]), data[1], data[2], data[3], Double.parseDouble(data[4]),
-                        data[5], data[6], Boolean.parseBoolean(data[7]), Integer.parseInt(data[8]), flavorNotes, data[10]
+                List<String> flavorNotes = data[9].isEmpty() ? new ArrayList<>() : List.of(data[9].split(";"));
+                Coffee coffee = new Coffee(
+                        Integer.parseInt(data[0]),
+                        data[1], data[2], data[3], Double.parseDouble(data[4]),
+                        data[5], data[6], Boolean.parseBoolean(data[7]),
+                        Integer.parseInt(data[8]), flavorNotes, data[10]
                 );
-                coffees.add(c);
+                coffees.add(coffee);
             }
         } catch (IOException e) {
             System.out.println("Error reading coffee data: " + e.getMessage());
         }
+    }
+
+    private String escape(String input) {
+        return input.replace(",", "&#44;").replace("\n", "").replace("\r", "");
     }
 }
