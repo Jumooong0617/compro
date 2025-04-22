@@ -1,24 +1,27 @@
 package com.jumooong.forms;
 
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @Controller
 public class CoffeeController {
-    private final CoffeeService coffeeService;
 
-    public CoffeeController() {
-        coffeeService = new CoffeeService();
-    }
+    @Autowired
+    private CoffeeService coffeeService;
+
+    private final List<String> roastLevels = List.of("Light", "Medium", "Dark");
+    private final List<String> brewMethods = List.of("Espresso", "French Press", "Drip", "Cold Brew");
+    private final List<String> flavorOptions = List.of("Nutty", "Fruity", "Spicy", "Floral");
+    private final List<String> coffeeTypes = List.of("Arabica", "Robusta", "Liberica", "Excelsa", "Geisha", "Bourbon", "Typica");
 
     @GetMapping("/")
-    public String index(@RequestParam(defaultValue = "") String search, Model model) {
+    public String index(@RequestParam(required = false) String search, Model model) {
         model.addAttribute("coffees", coffeeService.searchCoffee(search));
         return "index";
     }
@@ -31,27 +34,27 @@ public class CoffeeController {
 
     @GetMapping("/new")
     public String create(Model model) {
-        List<String> roastLevels = List.of("Light", "Medium", "Dark");
-        List<String> brewMethods = List.of("Espresso", "French Press", "Drip", "Cold Brew");
+        Coffee newCoffee = new Coffee();
+        model.addAttribute("newCoffee", newCoffee);
         model.addAttribute("roastLevels", roastLevels);
         model.addAttribute("brewMethods", brewMethods);
+        model.addAttribute("flavorOptions", flavorOptions);
+        model.addAttribute("coffeeTypes", coffeeTypes);
         return "create";
     }
 
     @PostMapping("/save")
-    public String store(@RequestParam String name,
-                        @RequestParam String type,
-                        @RequestParam String size,
-                        @RequestParam double price,
-                        @RequestParam String roastLevel,
-                        @RequestParam String origin,
-                        @RequestParam boolean isDecaf,
-                        @RequestParam int stock,
-                        @RequestParam List<String> flavorNotes,
-                        @RequestParam String brewMethod) {
-
-        Coffee c = new Coffee(coffeeService.getLastId() + 1, name, type, size, price, roastLevel, origin, isDecaf, stock, flavorNotes, brewMethod);
-        coffeeService.addCoffee(c);
+    public String store(@ModelAttribute("newCoffee") @Valid Coffee coffee,
+                        BindingResult bindingResult,
+                        Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("roastLevels", roastLevels);
+            model.addAttribute("brewMethods", brewMethods);
+            model.addAttribute("flavorOptions", flavorOptions);
+            model.addAttribute("coffeeTypes", coffeeTypes);
+            return "create";
+        }
+        coffeeService.addCoffee(coffee);
         return "redirect:/";
     }
 
@@ -59,44 +62,29 @@ public class CoffeeController {
     public String edit(@RequestParam int id, Model model) {
         Coffee c = coffeeService.getCoffee(id);
         if (c != null) {
-            List<String> roastLevels = List.of("Light", "Medium", "Dark");
-            List<String> brewMethods = List.of("Espresso", "French Press", "Drip", "Cold Brew");
+            model.addAttribute("coffee", c);
             model.addAttribute("roastLevels", roastLevels);
             model.addAttribute("brewMethods", brewMethods);
-            model.addAttribute("coffee", c);
+            model.addAttribute("flavorOptions", flavorOptions);
+            model.addAttribute("coffeeTypes", coffeeTypes);
             return "edit";
         }
         return "redirect:/";
     }
 
     @PostMapping("/update")
-    public String update(@RequestParam int id,
-                         @RequestParam String name,
-                         @RequestParam String type,
-                         @RequestParam String size,
-                         @RequestParam double price,
-                         @RequestParam String roastLevel,
-                         @RequestParam String origin,
-                         @RequestParam boolean isDecaf,
-                         @RequestParam int stock,
-                         @RequestParam List<String> flavorNotes,
-                         @RequestParam String brewMethod) {
-
-        Coffee c = coffeeService.getCoffee(id);
-        if (c != null) {
-            c.setName(name);
-            c.setType(type);
-            c.setSize(size);
-            c.setPrice(price);
-            c.setRoastLevel(roastLevel);
-            c.setOrigin(origin);
-            c.setDecaf(isDecaf);
-            c.setStock(stock);
-            c.setFlavorNotes(flavorNotes);
-            c.setBrewMethod(brewMethod);
-
-            coffeeService.updateCoffee(id, c);
+    public String update(@ModelAttribute("coffee") @Valid Coffee coffee,
+                         BindingResult bindingResult,
+                         Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("roastLevels", roastLevels);
+            model.addAttribute("brewMethods", brewMethods);
+            model.addAttribute("flavorOptions", flavorOptions);
+            model.addAttribute("coffeeTypes", coffeeTypes);
+            return "edit";
         }
+
+        coffeeService.updateCoffee(coffee.getId(), coffee);
         return "redirect:/";
     }
 }

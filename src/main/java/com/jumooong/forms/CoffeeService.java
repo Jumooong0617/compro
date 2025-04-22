@@ -1,10 +1,14 @@
 package com.jumooong.forms;
 
+import org.springframework.stereotype.Service;
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CoffeeService {
     private List<Coffee> coffees;
     private final String FILE_NAME = "coffee_database.csv";
@@ -19,12 +23,22 @@ public class CoffeeService {
             return coffees;
         }
 
-        return coffees.stream()
-                .filter(s -> s.getName().toLowerCase().contains(keyword.toLowerCase())
-                        || s.getSize().toLowerCase().contains(keyword.toLowerCase())
-                        || s.getOrigin().toLowerCase().contains(keyword.toLowerCase()))
-                .collect(Collectors.toList());
-    }
+
+    return coffees.stream()
+            .filter(c ->
+            c.getName().toLowerCase().contains(keyword.toLowerCase()) ||
+            c.getType().toLowerCase().contains(keyword.toLowerCase()) ||
+            c.getSize().toLowerCase().contains(keyword.toLowerCase()) ||
+            c.getRoastLevel().toLowerCase().contains(keyword.toLowerCase()) ||
+            c.getOrigin().toLowerCase().contains(keyword.toLowerCase()) ||
+            c.getBrewMethod().toLowerCase().contains(keyword.toLowerCase()) ||
+            (c.isDecaf() && (
+                    keyword.toLowerCase().contains("decaf") ||
+                            keyword.toLowerCase().contains("decaffeinated")
+            ))
+            )
+            .collect(Collectors.toList());
+}
 
     public List<Coffee> getCoffees() {
         return coffees;
@@ -36,13 +50,10 @@ public class CoffeeService {
     }
 
     public Coffee getCoffee(int id) {
-        for (Coffee c : coffees) {
-            if (c.getId() == id)
-                return c;
-        }
-        return null;
+        return coffees.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
- void updateCoffee(int id, Coffee update) {
+
+    public void updateCoffee(int id, Coffee update) {
         for (int i = 0; i < coffees.size(); i++) {
             if (coffees.get(i).getId() == id) {
                 coffees.set(i, update);
@@ -53,20 +64,35 @@ public class CoffeeService {
     }
 
     public void addCoffee(Coffee coffee) {
+        int nextId = getNextId();
+        coffee.setId(nextId);
+        if (coffee.getFlavorNotes() == null) {
+            coffee.setFlavorNotes(new ArrayList<>());
+        }
         coffees.add(coffee);
         writeToDisk();
     }
 
-    public int getLastId() {
-        return coffees.isEmpty() ? 0 : coffees.get(coffees.size() - 1).getId();
+    public int getNextId() {
+        return coffees.stream().mapToInt(Coffee::getId).max().orElse(0) + 1;
     }
 
     public void writeToDisk() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Coffee c : coffees) {
-                bw.write(c.getId() + "," + c.getName() + "," + c.getType() + "," + c.getSize() + "," + c.getPrice() + "," +
-                        c.getRoastLevel() + "," + c.getOrigin() + "," + c.isDecaf() + "," + c.getStock() + "," +
-                        String.join(";", c.getFlavorNotes()) + "," + c.getBrewMethod());
+                bw.write(String.join(",", List.of(
+                        String.valueOf(c.getId()),
+                        escape(c.getName()),
+                        escape(c.getType()),
+                        escape(c.getSize()),
+                        String.valueOf(c.getPrice()),
+                        escape(c.getRoastLevel()),
+                        escape(c.getOrigin() != null ? c.getOrigin() : ""),
+                        String.valueOf(c.isDecaf()),
+                        String.valueOf(c.getStock()),
+                        escape(String.join(";", c.getFlavorNotes() != null ? c.getFlavorNotes() : Collections.emptyList())),
+                        escape(c.getBrewMethod())
+                )));
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -84,17 +110,24 @@ public class CoffeeService {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                List<String> flavorNotes = List.of(data[9].split(";"));
+                String[] data = line.split(",", -1); // -1 keeps empty strings
+                if (data.length < 11) continue;
 
-                Coffee c = new Coffee(
-                        Integer.parseInt(data[0]), data[1], data[2], data[3], Double.parseDouble(data[4]),
-                        data[5], data[6], Boolean.parseBoolean(data[7]), Integer.parseInt(data[8]), flavorNotes, data[10]
+                List<String> flavorNotes = data[9].isEmpty() ? new ArrayList<>() : List.of(data[9].split(";"));
+                Coffee coffee = new Coffee(
+                        Integer.parseInt(data[0]),
+                        data[1], data[2], data[3], Double.parseDouble(data[4]),
+                        data[5], data[6], Boolean.parseBoolean(data[7]),
+                        Integer.parseInt(data[8]), flavorNotes, data[10]
                 );
-                coffees.add(c);
+                coffees.add(coffee);
             }
         } catch (IOException e) {
             System.out.println("Error reading coffee data: " + e.getMessage());
         }
+    }
+
+    private String escape(String input) {
+        return input.replace(",", "&#44;").replace("\n", "").replace("\r", "");
     }
 }

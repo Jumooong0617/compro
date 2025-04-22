@@ -26,7 +26,6 @@
             color: #e4d3b7;
             margin: 0;
             padding-top: 80px;
-            text-align: center;
         }
 
         .container {
@@ -42,38 +41,54 @@
             color: #d7a86e;
             font-family: 'Georgia', serif;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         .form-group {
             display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 15px;
+            flex-direction: column;
         }
 
         label {
             font-weight: bold;
             color: #e4d3b7;
-            margin-right: 15px;
+            margin-bottom: 5px;
             font-size: 16px;
-            width: 180px; /* Added width for better alignment */
-            text-align: right; /* Aligns the label text to the right */
         }
 
         input, select {
-            width: 100%;
-            padding: 12px; /* Increased padding for better visual consistency */
+            padding: 10px;
             border: 1px solid #d7a86e;
             border-radius: 5px;
             font-size: 16px;
             background-color: #4e342e;
             color: #e4d3b7;
+        }
+
+        input.error, select.error {
+            border: 2px solid #f44336;
+            background-color: #5e2e2e;
+        }
+
+        .error {
+            color: #f44336;
+            font-size: 13px;
+            font-weight: normal;
+            margin-top: 4px;
+            order: 2; /* ensures it always follows input/select */
+        }
+
+        /* Ensure checkboxes and grouped inputs look correct */
+        .form-group > div {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         button {
@@ -84,8 +99,8 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            width: 100%;
             font-size: 18px;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -93,16 +108,18 @@
         }
 
         .back-link {
-            display: inline-block;
+            display: block;
             margin-top: 20px;
             color: #d7a86e;
             text-decoration: none;
             font-weight: bold;
+            text-align: center;
         }
 
         .back-link:hover {
             color: #c69463;
         }
+
     </style>
 </head>
 <body>
@@ -112,76 +129,92 @@
 <div class="container">
     <h1>Edit <span th:text="${coffee.name}">Coffee</span></h1>
 
-    <form action="/update" method="post" th:action="@{/update}">
-        <input type="hidden" name="id" th:value="${coffee.id}">
+    <form th:action="@{/update}" th:object="${coffee}" method="post">
+        <input type="hidden" th:field="*{id}"/>
 
         <div class="form-group">
             <label for="name">Coffee Name:</label>
-            <input type="text" id="name" name="name" th:value="${coffee.name}" required>
+            <input type="text" id="name" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? 'error' : ''">
+            <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
         </div>
 
         <div class="form-group">
             <label for="type">Type:</label>
-            <input type="text" id="type" name="type" th:value="${coffee.type}" required>
+            <select id="type" th:field="*{type}" th:classappend="${#fields.hasErrors('type')} ? 'error' : ''">
+                <option value="">-- Select --</option>
+                <option th:each="t : ${coffeeTypes}" th:value="${t}" th:text="${t}"></option>
+            </select>
+            <p class="error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></p>
         </div>
 
         <div class="form-group">
-            <label for="size">Choose Size:</label>
-            <select id="size" name="size" th:value="${coffee.size}">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
+            <label for="size">Size:</label>
+            <select id="size" th:field="*{size}" th:classappend="${#fields.hasErrors('size')} ? 'error' : ''">
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
             </select>
+            <p class="error" th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></p>
         </div>
 
         <div class="form-group">
             <label for="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" th:value="${coffee.price}" required>
+            <input type="number" id="price" step="0.01" th:field="*{price}" th:classappend="${#fields.hasErrors('price')} ? 'error' : ''">
+            <p class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
         </div>
 
         <div class="form-group">
             <label for="roastLevel">Roast Level:</label>
-            <select id="roastLevel" name="roastLevel" th:value="${coffee.roastLevel}">
-                <option value="light">Light</option>
-                <option value="medium">Medium</option>
-                <option value="dark">Dark</option>
+            <select id="roastLevel" th:field="*{roastLevel}" th:classappend="${#fields.hasErrors('roastLevel')} ? 'error' : ''">
+                <option value="">-- Select --</option>
+                <option th:each="rl : ${roastLevels}" th:value="${rl}" th:text="${rl}"></option>
             </select>
+            <p class="error" th:if="${#fields.hasErrors('roastLevel')}" th:errors="*{roastLevel}"></p>
         </div>
 
         <div class="form-group">
             <label for="origin">Origin:</label>
-            <input type="text" id="origin" name="origin" th:value="${coffee.origin}" required>
+            <input type="text" id="origin" th:field="*{origin}" th:classappend="${#fields.hasErrors('origin')} ? 'error' : ''">
+            <p class="error" th:if="${#fields.hasErrors('origin')}" th:errors="*{origin}"></p>
         </div>
 
         <div class="form-group">
-            <label>Decaf:</label>
-            <select name="isDecaf" id="isDecaf" th:value="${coffee.isDecaf}">
+            <label for="isDecaf">Decaf:</label>
+            <select id="isDecaf" th:field="*{decaf}" th:classappend="${#fields.hasErrors('decaf')} ? 'error' : ''">
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>
+            <p class="error" th:if="${#fields.hasErrors('decaf')}" th:errors="*{decaf}"></p>
         </div>
 
         <div class="form-group">
             <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" th:value="${coffee.stock}" required>
+            <input type="number" id="stock" th:field="*{stock}" th:classappend="${#fields.hasErrors('stock')} ? 'error' : ''">
+            <p class="error" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></p>
         </div>
 
         <div class="form-group">
             <label for="flavorNotes">Flavor Notes:</label>
-            <input type="text" id="flavorNotes" name="flavorNotes" th:value="${coffee.flavorNotes}">
+            <div th:each="note : ${flavorOptions}">
+                <label>
+                    <input type="checkbox" th:field="*{flavorNotes}" th:value="${note}"> <span th:text="${note}"></span>
+                </label>
+            </div>
+            <p class="error" th:if="${#fields.hasErrors('flavorNotes')}" th:errors="*{flavorNotes}"></p>
         </div>
 
         <div class="form-group">
             <label for="brewMethod">Brew Method:</label>
-            <select id="brewMethod" name="brewMethod" th:value="${coffee.brewMethod}">
-                <option value="drip">Drip</option>
-                <option value="espresso">Espresso</option>
-                <option value="frenchPress">French Press</option>
+            <select id="brewMethod" th:field="*{brewMethod}" th:classappend="${#fields.hasErrors('brewMethod')} ? 'error' : ''">
+                <option value="">-- Select --</option>
+                <option th:each="bm : ${brewMethods}" th:value="${bm}" th:text="${bm}"></option>
             </select>
+            <p class="error" th:if="${#fields.hasErrors('brewMethod')}" th:errors="*{brewMethod}"></p>
         </div>
 
         <button type="submit">Save</button>
     </form>
+
 
     <a href="/" class="back-link">Back to Coffee List</a>
 </div>

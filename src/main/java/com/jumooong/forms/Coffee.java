@@ -1,28 +1,51 @@
 package com.jumooong.forms;
 
-import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coffee {
     private int id;
-    @NotBlank (message = "Please enter a name")
+
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String name;
-    @NotBlank (message = "Please enter type")
+
+    @NotBlank(message = "Type is required")
     private String type;
-    @NotBlank (message = "Please select a size")
+
+    @NotBlank(message = "Size is required")
     private String size;
-    @NotBlank (message = "Please enter a price")
+
+    @DecimalMin(value = "0.01", message = "Price must be at least 0.01")
     private double price;
-    @NotBlank (message = "Please select a Roast Level")
+
+    @NotBlank(message = "Roast level is required")
     private String roastLevel;
+
+    @Size(max = 100, message = "Origin must be at most 100 characters")
     private String origin;
+
     private boolean isDecaf;
-    @NotBlank (message = "Please enter stock")
+
+    @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
-    private List<String> flavorNotes;
-    @NotBlank (message = "Please select a Brew Method")
+
+    private List<String> flavorNotes = new ArrayList<>();
+
+    @NotBlank(message = "Brew method is required")
     private String brewMethod;
+
+    public Coffee() {
+        this.name = "";
+        this.type = "";
+        this.size = "";
+        this.price = 0.0;
+        this.roastLevel = "";
+        this.origin = "";
+        this.isDecaf = false;
+        this.stock = 0;
+        this.brewMethod = "";
+    }
 
     public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
         this.id = id;
