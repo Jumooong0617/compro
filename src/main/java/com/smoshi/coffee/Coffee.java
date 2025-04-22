@@ -1,37 +1,49 @@
 package com.smoshi.coffee;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import java.util.List;
+
 public class Coffee {
+
     private int id;
+
+    @NotBlank(message = "Coffee name is required")
     private String name;
+
+    @NotBlank(message = "Coffee type is required")
     private String type;
+
+    @NotBlank(message = "Coffee size is required")
     private String size;
+
+    @DecimalMin(value = "0.1", message = "Price must be greater than 0")
     private double price;
+
+    @NotBlank(message = "Roast level is required")
     private String roastLevel;
+
+    @NotBlank(message = "Origin is required")
     private String origin;
+
     private boolean isDecaf;
+
+    @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
-    private String flavorNotes;
+
+    private List<String> flavorNotes;
+
+    @NotBlank(message = "Brew method is required")
     private String brewMethod;
+
+    // Constructors, getters, setters, etc.
 
     public Coffee() {}
 
-    /**
-     * Parameterized constructor for creating a Coffee object with specified details.
-     *
-     * @param id          Unique identifier for the coffee
-     * @param name        Name of the coffee
-     * @param type        Type of coffee (e.g., espresso, cappuccino)
-     * @param size        Size of the coffee (small, medium, large)
-     * @param price       Price of the coffee
-     * @param roastLevel  Roast level (light, medium, dark)
-     * @param origin      Origin of the coffee beans
-     * @param isDecaf     Whether the coffee is decaffeinated
-     * @param stock       Number of units in stock
-     * @param flavorNotes Description of the flavor profile
-     * @param brewMethod  Preferred brewing method
-     */
     public Coffee(int id, String name, String type, String size, double price, String roastLevel,
-                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod) {
+                  String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -48,6 +60,7 @@ public class Coffee {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -95,6 +108,7 @@ public class Coffee {
     public String getOrigin() {
         return origin;
     }
+
     public void setOrigin(String origin) {
         this.origin = origin;
     }
@@ -110,21 +124,25 @@ public class Coffee {
     public int getStock() {
         return stock;
     }
+
     public void setStock(int stock) {
         this.stock = stock;
     }
 
-    public String getFlavorNotes() {
+    public List<String> getFlavorNotes() {
         return flavorNotes;
     }
-    public void setFlavorNotes(String flavorNotes) {
+
+    public void setFlavorNotes(List<String> flavorNotes) {
         this.flavorNotes = flavorNotes;
     }
 
     public String getBrewMethod() {
         return brewMethod;
     }
+
     public void setBrewMethod(String brewMethod) {
         this.brewMethod = brewMethod;
     }
 }
+

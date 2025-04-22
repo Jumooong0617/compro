@@ -2,81 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/style.css">
-    <title>New Coffee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Coffee</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Link to your CSS file if applicable -->
 </head>
 <body>
 
-<div class="container">
-    <h1>New Coffee</h1>
+<h2>Add a New Coffee</h2>
 
-    <form action="/save" method="POST">
-        <div class="form-group">
-            <label for="name">Coffee Name</label>
-            <input type="text" id="name" name="name" required>
+<form th:action="@{/save}" th:object="${coffee}" method="POST">
+
+    <!-- Coffee Name -->
+    <div>
+        <label for="name">Coffee Name:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Enter coffee name"
+               th:classappend="${#fields.hasErrors('name')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></div>
+    </div>
+
+    <!-- Coffee Type -->
+    <div>
+        <label for="type">Coffee Type:</label>
+        <input type="text" id="type" th:field="*{type}" placeholder="Enter coffee type"
+               th:classappend="${#fields.hasErrors('type')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="error"></div>
+    </div>
+
+    <!-- Coffee Size -->
+    <div>
+        <label for="size">Coffee Size:</label>
+        <input type="text" id="size" th:field="*{size}" placeholder="Enter coffee size"
+               th:classappend="${#fields.hasErrors('size')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('size')}" th:errors="*{size}" class="error"></div>
+    </div>
+
+    <!-- Price -->
+    <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" th:field="*{price}" placeholder="Enter price" step="0.01"
+               th:classappend="${#fields.hasErrors('price')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></div>
+    </div>
+
+    <!-- Roast Level -->
+    <div>
+        <label for="roastLevel">Roast Level:</label>
+        <input type="text" id="roastLevel" th:field="*{roastLevel}" placeholder="Enter roast level"
+               th:classappend="${#fields.hasErrors('roastLevel')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('roastLevel')}" th:errors="*{roastLevel}" class="error"></div>
+    </div>
+
+    <!-- Origin -->
+    <div>
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" th:field="*{origin}" placeholder="Enter origin"
+               th:classappend="${#fields.hasErrors('origin')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('origin')}" th:errors="*{origin}" class="error"></div>
+    </div>
+
+    <!-- Decaf -->
+    <div>
+        <label for="isDecaf">Decaf:</label>
+        <input type="checkbox" id="isDecaf" th:field="*{isDecaf}"
+               th:classappend="${#fields.hasErrors('isDecaf')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('isDecaf')}" th:errors="*{isDecaf}" class="error"></div>
+    </div>
+
+    <!-- Stock -->
+    <div>
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" th:field="*{stock}" placeholder="Enter stock" min="0"
+               th:classappend="${#fields.hasErrors('stock')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="error"></div>
+    </div>
+
+    <!-- Flavor Notes (Checkboxes or Multi-select) -->
+    <div>
+        <label>Flavor Notes:</label>
+        <div>
+            <label><input type="checkbox" th:field="*{flavorNotes}" value="Fruity"/> Fruity</label>
+            <label><input type="checkbox" th:field="*{flavorNotes}" value="Nutty"/> Nutty</label>
+            <label><input type="checkbox" th:field="*{flavorNotes}" value="Chocolate"/> Chocolate</label>
+            <label><input type="checkbox" th:field="*{flavorNotes}" value="Spicy"/> Spicy</label>
         </div>
+        <div th:if="${#fields.hasErrors('flavorNotes')}" th:errors="*{flavorNotes}" class="error-message"></div>
+    </div>
 
-        <div class="form-group">
-            <label for="type">Type</label>
-            <input type="text" id="type" name="type" required>
-        </div>
+    <!-- Brew Method -->
+    <div>
+        <label for="brewMethod">Brew Method:</label>
+        <input type="text" id="brewMethod" th:field="*{brewMethod}" placeholder="Enter brew method"
+               th:classappend="${#fields.hasErrors('brewMethod')} ? 'error-field' : ''"/>
+        <div th:if="${#fields.hasErrors('brewMethod')}" th:errors="*{brewMethod}" class="error"></div>
+    </div>
 
-        <div class="form-group">
-            <label for="size">Size</label>
-            <select id="size" name="size" required>
-                <option value="Small">Small</option>
-                <option value="Medium">Medium</option>
-                <option value="Large">Large</option>
-            </select>
-        </div>
+    <!-- Submit Button -->
+    <div>
+        <button type="submit">Save Coffee</button>
+    </div>
 
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" id="price" name="price" step="0.01" required>
-        </div>
+</form>
 
-        <div class="form-group">
-            <label for="roastLevel">Roast Level</label>
-            <input type="text" id="roastLevel" name="roastLevel" required>
-        </div>
-
-        <div class="form-group">
-            <label for="origin">Origin</label>
-            <input type="text" id="origin" name="origin" required>
-        </div>
-
-        <div class="form-group">
-            <label for="isDecaf">Decaf</label>
-            <select id="isDecaf" name="isDecaf">
-                <option value="true">Yes</option>
-                <option value="false" selected>No</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="stock">Stock</label>
-            <input type="number" id="stock" name="stock" required>
-        </div>
-
-        <div class="form-group">
-            <label for="flavorNotes">Flavor Notes</label>
-            <input type="text" id="flavorNotes" name="flavorNotes">
-        </div>
-
-        <div class="form-group">
-            <label for="brewMethod">Brew Method</label>
-            <input type="text" id="brewMethod" name="brewMethod" required>
-        </div>
-
-        <button type="submit">Save</button>
-    </form>
-
+<!-- Link to the coffee list page -->
+<div>
     <a href="/" class="back-link">Back to Coffee List</a>
 </div>
 
 </body>
 </html>
-
-
 
