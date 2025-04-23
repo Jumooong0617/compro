@@ -5,31 +5,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CoffeeController {
 
-    private final CoffeeService coffeeService;
-
     @Autowired
-    public CoffeeController(CoffeeService coffeeService) {
-        this.coffeeService = coffeeService;
+    CoffeeService coffeeService;
+
+    private final String[] types = {"Frappe", "Espresso", "Americano", "Latte", "Cappuccino", "Mocha", "Flat White", "Iced Coffee"};
+    private final String[] sizes = {"Small", "Medium", "Large"};
+    private final String[] roastLevels = {"Light", "Medium", "Dark"};
+    private final String[] brewMethods = {"Drip", "French Press", "Espresso", "Filter"};
+
+    @GetMapping("/")
+    public String index(@RequestParam(defaultValue = "") String search, Model model) {
+        model.addAttribute("coffees", coffeeService.searchCoffee(search));
+        return "index";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam int id) {
+        coffeeService.deleteCoffee(id);
+        return "redirect:/";
     }
 
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("coffee", new Coffee());
+        model.addAttribute("types", types);
+        model.addAttribute("sizes", sizes);
+        model.addAttribute("roastLevels", roastLevels);
+        model.addAttribute("brewMethods", brewMethods);
         return "add";
     }
 
     @PostMapping("/save")
-    public String store(@Valid Coffee coffee, BindingResult bindingResult, Model model) {
+    public String store(@ModelAttribute("coffee") @Valid Coffee coffee, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("coffee", coffee);
-            return "add";  // Show the form again with validation errors
+            model.addAttribute("types", types);
+            model.addAttribute("sizes", sizes);
+            model.addAttribute("roastLevels", roastLevels);
+            model.addAttribute("brewMethods", brewMethods);
+            return "add";
         }
         coffee.setId(coffeeService.getLastId() + 1);
         coffeeService.addCoffee(coffee);
@@ -41,16 +59,23 @@ public class CoffeeController {
         Coffee coffee = coffeeService.getCoffee(id);
         if (coffee != null) {
             model.addAttribute("coffee", coffee);
+            model.addAttribute("types", types);
+            model.addAttribute("sizes", sizes);
+            model.addAttribute("roastLevels", roastLevels);
+            model.addAttribute("brewMethods", brewMethods);
             return "edit";
         }
         return "redirect:/";
     }
 
     @PostMapping("/update")
-    public String update(@Valid Coffee coffee, BindingResult bindingResult, Model model) {
+    public String update(@ModelAttribute("coffee") @Valid Coffee coffee, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("coffee", coffee);
-            return "edit";  // Show the form again with validation errors
+            model.addAttribute("types", types);
+            model.addAttribute("sizes", sizes);
+            model.addAttribute("roastLevels", roastLevels);
+            model.addAttribute("brewMethods", brewMethods);
+            return "edit";
         }
         coffeeService.updateCoffee(coffee.getId(), coffee);
         return "redirect:/";

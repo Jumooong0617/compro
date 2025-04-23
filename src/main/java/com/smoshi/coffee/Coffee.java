@@ -4,6 +4,8 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Coffee {
@@ -33,7 +35,7 @@ public class Coffee {
     @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
 
-    private List<String> flavorNotes;
+    private List<String> flavorNotes = new ArrayList<>();
 
     @NotBlank(message = "Brew method is required")
     private String brewMethod;
