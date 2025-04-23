@@ -35,7 +35,7 @@ public class Coffee {
     @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
 
-    private List<String> flavorNotes = new ArrayList<>();
+    private String flavorNotes;
 
     @NotBlank(message = "Brew method is required")
     private String brewMethod;
@@ -45,7 +45,7 @@ public class Coffee {
     public Coffee() {}
 
     public Coffee(int id, String name, String type, String size, double price, String roastLevel,
-                  String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
+                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -131,11 +131,11 @@ public class Coffee {
         this.stock = stock;
     }
 
-    public List<String> getFlavorNotes() {
+    public String getFlavorNotes() {
         return flavorNotes;
     }
 
-    public void setFlavorNotes(List<String> flavorNotes) {
+    public void setFlavorNotes(String flavorNotes) {
         this.flavorNotes = flavorNotes;
     }
 

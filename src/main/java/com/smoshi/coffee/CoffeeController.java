@@ -13,7 +13,7 @@ public class CoffeeController {
     @Autowired
     CoffeeService coffeeService;
 
-    private final String[] types = {"Frappe", "Espresso", "Americano", "Latte", "Cappuccino", "Mocha", "Flat White", "Iced Coffee"};
+    private final String[] types = {"Affogato", "Espresso", "Americano", "Latte", "Cappuccino", "Mocha", "Flat White", "Iced Coffee"};
     private final String[] sizes = {"Small", "Medium", "Large"};
     private final String[] roastLevels = {"Light", "Medium", "Dark"};
     private final String[] brewMethods = {"Drip", "French Press", "Espresso", "Filter"};

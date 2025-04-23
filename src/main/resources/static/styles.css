@@ -1,0 +1,171 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2e3b2e; /* Dark matcha background */
+    color: #e3f4e3; /* Light matcha text */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #c4e1c1; /* Soft green text */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #6a8a6c; /* Matcha green links */
+    font-weight: bold;
+}
+
+a:hover {
+    color: #8ca68c; /* Lighter green on hover */
+}
+
+button, .btn {
+    background-color: #3c4a3e; /* Dark matcha button */
+    color: #f4f9f4; /* Light text */
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+button:hover, .btn:hover {
+    background-color: #576c56; /* Slightly lighter green on hover */
+}
+
+/* Form container */
+.form-container {
+    background-color: #3a4c39; /* Darker matcha container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+/* Form elements */
+form {
+    display: grid;
+    grid-gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 1.2rem;
+    color: #a3cba0; /* Lighter matcha for labels */
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #a2b68b; /* Matcha-colored borders */
+    border-radius: 5px;
+    background-color: #4d5b47; /* Slightly lighter matcha for input fields */
+    color: #f4f9f4; /* Light text */
+}
+
+input:focus, select:focus {
+    border-color: #c4e1c1; /* Soft green focus border */
+    outline: none;
+}
+
+/* Error handling */
+input.error, select.error {
+    border: 2px solid #e74c3c; /* Red border for error */
+    background-color: #543737; /* Slight red-tinted background */
+}
+
+p.error {
+    font-size: 0.9rem;
+    color: #e74c3c; /* Red for error messages */
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Button styles for form */
+button[type="submit"] {
+    background-color: #557153; /* Darker matcha for submit button */
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+}
+
+button[type="submit"]:hover {
+    background-color: #4e633d; /* Hover effect */
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #3a4c39; /* Table background */
+    color: #e3f4e3; /* Table text color */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #6b7b56; /* Light matcha border */
+}
+
+th {
+    background-color: #2d3a2d; /* Dark header background */
+    font-size: 1.1rem;
+    color: #c4e1c1; /* Soft green text */
+}
+
+td {
+    background-color: #4b5c4b; /* Slightly darker matcha for table rows */
+}
+
+tr:nth-child(even) {
+    background-color: #3e4a3e; /* Stripe effect for alternating rows */
+}
+
+/* Form-specific styling */
+input[type="text"], input[type="number"], select {
+    background-color: #4b5c4b; /* Same background for inputs */
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Checkbox group styling */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-top: 5px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #4b5c4b;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.checkbox-item:hover {
+    background-color: #5a6b5a;
+}

@@ -119,7 +119,12 @@ public class CoffeeService {
                 c.setDecaf(Boolean.parseBoolean(data[7]));
                 c.setStock(Integer.parseInt(data[8]));
                 c.setBrewMethod(data[9]);
-                c.setFlavorNotes(List.of(data[10].split(";"))); // Parsing flavor notes from semi-colon separated string
+
+                if(data.length >= 11){
+                    c.setFlavorNotes(data[10]);
+                }else{
+                    c.setFlavorNotes("");
+                }
 
                 coffees.add(c);
             }
