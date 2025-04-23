@@ -6,25 +6,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 public class CoffeeService {
     private ArrayList<Coffee> coffees;
     private final String FILE_NAME = "coffee_database.csv";
 
+    /**
+     * Initializes the coffee list and loads data from disk.
+     */
     public CoffeeService() {
         coffees = new ArrayList<>();
         readFromDisk();
     }
 
+    /**
+     * Returns the list of all coffees.
+     */
     public ArrayList<Coffee> getCoffees() {
         return coffees;
     }
 
+    /**
+     * Deletes a coffee entry by ID.
+     */
     public void deleteCoffee(int id) {
         coffees.removeIf(c -> c.getId() == id);
         writeToDisk();
     }
 
+    /**
+     * Searches for coffees by a keyword across multiple fields.
+     */
     public List<Coffee> searchCoffee(String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
             return coffees;
@@ -39,10 +52,13 @@ public class CoffeeService {
                         c.getOrigin() != null && c.getOrigin().toLowerCase().contains(lower) ||
                         c.getFlavorNotes() != null && c.getFlavorNotes().toString().toLowerCase().contains(lower) ||
                         c.getBrewMethod() != null && c.getBrewMethod().toLowerCase().contains(lower) ||
-                        (c.isDecaf()  && (lower.contains("decaf") || lower.contains("decaffeinated")))
+                        (c.isDecaf() && (lower.contains("decaf") || lower.contains("decaffeinated")))
         ).collect(Collectors.toList());
     }
 
+    /**
+     * Retrieves a coffee by its ID.
+     */
     public Coffee getCoffee(int id) {
         for (Coffee c : coffees) {
             if (c.getId() == id)
@@ -51,6 +67,9 @@ public class CoffeeService {
         return null;
     }
 
+    /**
+     * Updates an existing coffee entry.
+     */
     public void updateCoffee(int id, Coffee update) {
         for (int i = 0; i < coffees.size(); i++) {
             if (coffees.get(i).getId() == id) {
@@ -61,12 +80,18 @@ public class CoffeeService {
         }
     }
 
+    /**
+     * Adds a new coffee entry and assigns a new ID.
+     */
     public void addCoffee(Coffee coffee) {
         coffee.setId(getLastId() + 1);
         coffees.add(coffee);
         writeToDisk();
     }
 
+    /**
+     * Returns the highest ID currently in the coffee list.
+     */
     public int getLastId() {
         if (coffees.isEmpty()) {
             return 0;
@@ -74,6 +99,9 @@ public class CoffeeService {
         return coffees.get(coffees.size() - 1).getId();
     }
 
+    /**
+     * Saves all coffee data to disk in CSV format.
+     */
     public void writeToDisk() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
             for (Coffee c : coffees) {
@@ -87,7 +115,7 @@ public class CoffeeService {
                         + c.isDecaf() + ","
                         + c.getStock() + ","
                         + c.getBrewMethod() + ","
-                        + String.join(";", c.getFlavorNotes())); // Storing flavor notes as a semi-colon separated string
+                        + String.join(";", c.getFlavorNotes()));
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -95,6 +123,9 @@ public class CoffeeService {
         }
     }
 
+    /**
+     * Loads coffee data from the CSV file if it exists.
+     */
     public void readFromDisk() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
@@ -120,9 +151,9 @@ public class CoffeeService {
                 c.setStock(Integer.parseInt(data[8]));
                 c.setBrewMethod(data[9]);
 
-                if(data.length >= 11){
+                if (data.length >= 11) {
                     c.setFlavorNotes(data[10]);
-                }else{
+                } else {
                     c.setFlavorNotes("");
                 }
 
@@ -133,4 +164,3 @@ public class CoffeeService {
         }
     }
 }
-

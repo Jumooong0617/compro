@@ -1,8 +1,7 @@
-/* General styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #2e3b2e; /* Dark matcha background */
-    color: #e3f4e3; /* Light matcha text */
+    background-color: #2e3b2e;
+    color: #e3f4e3;
     margin: 0;
     padding: 0;
 }
@@ -15,24 +14,24 @@ body {
 
 h1 {
     font-size: 2.5rem;
-    color: #c4e1c1; /* Soft green text */
+    color: #c4e1c1;
     text-align: center;
     margin-bottom: 20px;
 }
 
 a {
     text-decoration: none;
-    color: #6a8a6c; /* Matcha green links */
+    color: #6a8a6c;
     font-weight: bold;
 }
 
 a:hover {
-    color: #8ca68c; /* Lighter green on hover */
+    color: #8ca68c;
 }
 
 button, .btn {
-    background-color: #3c4a3e; /* Dark matcha button */
-    color: #f4f9f4; /* Light text */
+    background-color: #3c4a3e;
+    color: #f4f9f4;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
@@ -41,12 +40,11 @@ button, .btn {
 }
 
 button:hover, .btn:hover {
-    background-color: #576c56; /* Slightly lighter green on hover */
+    background-color: #576c56;
 }
 
-/* Form container */
 .form-container {
-    background-color: #3a4c39; /* Darker matcha container */
+    background-color: #3a4c39;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -54,7 +52,6 @@ button:hover, .btn:hover {
     margin: 30px auto;
 }
 
-/* Form elements */
 form {
     display: grid;
     grid-gap: 15px;
@@ -64,39 +61,37 @@ form {
 
 label {
     font-size: 1.2rem;
-    color: #a3cba0; /* Lighter matcha for labels */
+    color: #a3cba0;
 }
 
 input, select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #a2b68b; /* Matcha-colored borders */
+    border: 1px solid #a2b68b;
     border-radius: 5px;
-    background-color: #4d5b47; /* Slightly lighter matcha for input fields */
-    color: #f4f9f4; /* Light text */
+    background-color: #4d5b47;
+    color: #f4f9f4;
 }
 
 input:focus, select:focus {
-    border-color: #c4e1c1; /* Soft green focus border */
+    border-color: #c4e1c1;
     outline: none;
 }
 
-/* Error handling */
 input.error, select.error {
-    border: 2px solid #e74c3c; /* Red border for error */
-    background-color: #543737; /* Slight red-tinted background */
+    border: 2px solid #e74c3c;
+    background-color: #543737;
 }
 
 p.error {
     font-size: 0.9rem;
-    color: #e74c3c; /* Red for error messages */
+    color: #e74c3c;
     margin-top: 5px;
     margin-bottom: 10px;
 }
 
-/* Button styles for form */
 button[type="submit"] {
-    background-color: #557153; /* Darker matcha for submit button */
+    background-color: #557153;
     color: white;
     padding: 12px 20px;
     font-size: 1.1rem;
@@ -106,16 +101,15 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #4e633d; /* Hover effect */
+    background-color: #4e633d;
 }
 
-/* Table styles */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: #3a4c39; /* Table background */
-    color: #e3f4e3; /* Table text color */
+    background-color: #3a4c39;
+    color: #e3f4e3;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -123,33 +117,31 @@ table {
 th, td {
     padding: 12px;
     text-align: center;
-    border-bottom: 1px solid #6b7b56; /* Light matcha border */
+    border-bottom: 1px solid #6b7b56;
 }
 
 th {
-    background-color: #2d3a2d; /* Dark header background */
+    background-color: #2d3a2d;
     font-size: 1.1rem;
-    color: #c4e1c1; /* Soft green text */
+    color: #c4e1c1;
 }
 
 td {
-    background-color: #4b5c4b; /* Slightly darker matcha for table rows */
+    background-color: #4b5c4b;
 }
 
 tr:nth-child(even) {
-    background-color: #3e4a3e; /* Stripe effect for alternating rows */
+    background-color: #3e4a3e;
 }
 
-/* Form-specific styling */
 input[type="text"], input[type="number"], select {
-    background-color: #4b5c4b; /* Same background for inputs */
+    background-color: #4b5c4b;
 }
 
 input[type="checkbox"] {
     margin-right: 10px;
 }
 
-/* Checkbox group styling */
 .checkbox-group {
     display: flex;
     flex-wrap: wrap;
