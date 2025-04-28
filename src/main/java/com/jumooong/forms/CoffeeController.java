@@ -1,5 +1,6 @@
 package com.jumooong.forms;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,19 +22,34 @@ public class CoffeeController {
     private final List<String> coffeeTypes = List.of("Arabica", "Robusta", "Liberica", "Excelsa", "Geisha", "Bourbon", "Typica");
 
     @GetMapping("/")
-    public String index(@RequestParam(required = false) String search, Model model) {
+    public String index(@RequestParam(required = false) String search, Model model, HttpSession session) {
+        AppUser currentUser = (AppUser) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
         model.addAttribute("coffees", coffeeService.searchCoffee(search));
         return "index";
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam int id) {
+    public String delete(@RequestParam int id, HttpSession session) {
+        AppUser currentUser = (AppUser) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
         coffeeService.deleteCoffee(id);
         return "redirect:/";
     }
 
     @GetMapping("/new")
-    public String create(Model model) {
+    public String create(Model model, HttpSession session) {
+        AppUser currentUser = (AppUser) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
         Coffee newCoffee = new Coffee();
         model.addAttribute("newCoffee", newCoffee);
         model.addAttribute("roastLevels", roastLevels);
@@ -46,7 +62,13 @@ public class CoffeeController {
     @PostMapping("/save")
     public String store(@ModelAttribute("newCoffee") @Valid Coffee coffee,
                         BindingResult bindingResult,
-                        Model model) {
+                        Model model,
+                        HttpSession session) {
+        AppUser currentUser = (AppUser) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("roastLevels", roastLevels);
             model.addAttribute("brewMethods", brewMethods);
@@ -59,7 +81,12 @@ public class CoffeeController {
     }
 
     @GetMapping("/edit")
-    public String edit(@RequestParam int id, Model model) {
+    public String edit(@RequestParam int id, Model model, HttpSession session) {
+        AppUser currentUser = (AppUser) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
         Coffee c = coffeeService.getCoffee(id);
         if (c != null) {
             model.addAttribute("coffee", c);
@@ -75,7 +102,13 @@ public class CoffeeController {
     @PostMapping("/update")
     public String update(@ModelAttribute("coffee") @Valid Coffee coffee,
                          BindingResult bindingResult,
-                         Model model) {
+                         Model model,
+                         HttpSession session) {
+        AppUser currentUser = (AppUser) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("roastLevels", roastLevels);
             model.addAttribute("brewMethods", brewMethods);
