@@ -45,13 +45,13 @@ public class CoffeeService {
 
         String lower = keyword.toLowerCase();
         return coffees.stream().filter(c ->
-                c.getName() != null && c.getName().toLowerCase().contains(lower) ||
-                        c.getType() != null && c.getType().toLowerCase().contains(lower) ||
-                        c.getSize() != null && c.getSize().toLowerCase().contains(lower) ||
-                        c.getRoastLevel() != null && c.getRoastLevel().toLowerCase().contains(lower) ||
-                        c.getOrigin() != null && c.getOrigin().toLowerCase().contains(lower) ||
-                        c.getFlavorNotes() != null && c.getFlavorNotes().toString().toLowerCase().contains(lower) ||
-                        c.getBrewMethod() != null && c.getBrewMethod().toLowerCase().contains(lower) ||
+                        c.getName().toLowerCase().contains(lower) ||
+                        c.getType().toLowerCase().contains(lower) ||
+                        c.getSize().toLowerCase().contains(lower) ||
+                        c.getRoastLevel().toLowerCase().contains(lower) ||
+                        c.getOrigin().toLowerCase().contains(lower) ||
+                        c.getFlavorNotes().toString().toLowerCase().contains(lower) ||
+                        c.getBrewMethod().toLowerCase().contains(lower) ||
                         (c.isDecaf() && (lower.contains("decaf") || lower.contains("decaffeinated")))
         ).collect(Collectors.toList());
     }

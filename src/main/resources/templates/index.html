@@ -50,9 +50,12 @@
             <td th:text="${coffee.flavorNotes}"></td>
             <td th:text="${coffee.brewMethod}"></td>
             <td>
-                <a th:href="@{/edit(id=${coffee.id})}" class="btn">Edit</a>
-                <a th:href="@{/delete(id=${coffee.id})}" class="btn">Delete</a>
+                <div class="actions">
+                    <a th:href="@{/edit(id=${coffee.id})}" class="btn">Edit</a>
+                    <a th:href="@{/delete(id=${coffee.id})}" class="btn">Delete</a>
+                </div>
             </td>
+
         </tr>
         </tbody>
     </table>

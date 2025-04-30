@@ -13,7 +13,7 @@ body {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 40px;
     color: #c4e1c1;
     text-align: center;
     margin-bottom: 20px;
@@ -35,7 +35,7 @@ button, .btn {
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 16px;
     border-radius: 5px;
 }
 
@@ -60,7 +60,7 @@ form {
 }
 
 label {
-    font-size: 1.2rem;
+    font-size: 19px;
     color: #a3cba0;
 }
 
@@ -84,7 +84,7 @@ input.error, select.error {
 }
 
 p.error {
-    font-size: 0.9rem;
+    font-size: 14px;
     color: #e74c3c;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -94,7 +94,7 @@ button[type="submit"] {
     background-color: #557153;
     color: white;
     padding: 12px 20px;
-    font-size: 1.1rem;
+    font-size: 17px;
     border-radius: 6px;
     cursor: pointer;
     border: none;
@@ -115,14 +115,14 @@ table {
 }
 
 th, td {
-    padding: 12px;
+    padding: 15px;
     text-align: center;
     border-bottom: 1px solid #6b7b56;
 }
 
 th {
     background-color: #2d3a2d;
-    font-size: 1.1rem;
+    font-size: 17px;
     color: #c4e1c1;
 }
 
@@ -160,4 +160,21 @@ input[type="checkbox"] {
 
 .checkbox-item:hover {
     background-color: #5a6b5a;
+}
+
+td .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.actions .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.actions .btn:hover {
+    background-color: #576c56;
 }
