@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CoffeeAuthController {
 
     @Autowired
-    private CoffeeUserService coffeeUserService;
+    CoffeeUserService coffeeUserService;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -24,13 +24,13 @@ public class CoffeeAuthController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("coffeeUser") @Valid CoffeeUser formUser, BindingResult bindingResult, HttpSession session, Model model) {
+    public String login(@ModelAttribute("coffeeUser") @Valid CoffeeUser coffeeUser, BindingResult bindingResult, HttpSession session, Model model) {
         if (bindingResult.hasErrors()) {
             return "login";
         }
 
-        CoffeeUser foundUser = coffeeUserService.findByUsername(formUser.getUsername());
-        if (foundUser != null && new BCryptPasswordEncoder().matches(formUser.getPassword(), foundUser.getPassword())) {
+        CoffeeUser foundUser = coffeeUserService.findByUsername(coffeeUser.getUsername());
+        if (foundUser != null && new BCryptPasswordEncoder().matches(coffeeUser.getPassword(), foundUser.getPassword())) {
             session.setAttribute("coffeeUser", foundUser);
             return "redirect:/";
         } else {

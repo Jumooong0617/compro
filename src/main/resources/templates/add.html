@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/css/form.css">
     <title>New Coffee</title>
 </head>
 <body>
 
 <div class="form-container">
     <h1>New Coffee</h1>
-    <form action="/save" method="POST" th:object="${coffee}">
-        <div>
+    <form th:action="@{/save}" th:object="${coffee}" method="POST" enctype="multipart/form-data">
+    <div>
             <label for="name">Name:</label>
             <input type="text" id="name" th:field="*{name}" placeholder="Enter coffee name"
                    th:classappend="${#fields.hasErrors('name')} ? 'error' : ''">
@@ -102,10 +102,18 @@
             </select>
         </div>
 
-        <button type="submit">Save</button>
-    </form>
+        <div>
+            <label for="imageFile">Profile Picture:</label>
+            <input type="file" id="imageFile" name="imageFile"/>
+        </div>
 
-    <a href="/">Back to List</a>
+
+        <div class="action">
+            <a href="/" class="button cancel">Back to List</a>
+            <button type="submit" class="button">Submit</button>
+        </div>
+
+    </form>
 </div>
 
 </body>

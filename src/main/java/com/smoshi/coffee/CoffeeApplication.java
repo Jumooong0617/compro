@@ -13,8 +13,7 @@ public class CoffeeApplication {
     }
 
     public static void run(){
-        String plainPassword = "secret";
-        String encrypted = new BCryptPasswordEncoder().encode(plainPassword);
+        String encrypted = new BCryptPasswordEncoder().encode("secret");
         System.out.println(encrypted);
     }
 }

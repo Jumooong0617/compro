@@ -1,11 +1,17 @@
 package com.smoshi.coffee;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 
 @Controller
@@ -27,10 +33,16 @@ public class CoffeeController {
      * @return Name of the Thymeleaf template to render.
      */
     @GetMapping("/")
-    public String index(@RequestParam(defaultValue = "") String search, Model model) {
+    public String index(@RequestParam(defaultValue = "") String search, Model model, HttpSession session) {
+        CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
+        if(currentUser == null){
+            return "redirect:/login";
+        }
+
         model.addAttribute("coffees", coffeeService.searchCoffee(search));
         return "index";
     }
+
 
     /**
      * Deletes a coffee entry by ID.
@@ -39,7 +51,12 @@ public class CoffeeController {
      * @return Redirects to the home page after deletion.
      */
     @GetMapping("/delete")
-    public String delete(@RequestParam int id) {
+    public String delete(@RequestParam int id, HttpSession session) {
+        CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
+        if(currentUser == null){
+            return "redirect:/login";
+        }
+
         coffeeService.deleteCoffee(id);
         return "redirect:/";
     }
@@ -51,7 +68,11 @@ public class CoffeeController {
      * @return Name of the Thymeleaf template to render.
      */
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(Model model, HttpSession session) {
+        CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
+        if(currentUser == null){
+            return "redirect:/login";
+        }
         model.addAttribute("coffee", new Coffee());
         model.addAttribute("types", types);
         model.addAttribute("sizes", sizes);
@@ -69,18 +90,48 @@ public class CoffeeController {
      * @return Redirects to the home page or reloads the add form on validation failure.
      */
     @PostMapping("/save")
-    public String store(@ModelAttribute("coffee") @Valid Coffee coffee, BindingResult bindingResult, Model model) {
+    public String store(@ModelAttribute("coffee") @Valid Coffee coffee,
+                        BindingResult bindingResult,
+                        @RequestParam(value = "imageFile") MultipartFile coffeePicture, Model model, HttpSession session) {
+
+        CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("types", types);
             model.addAttribute("sizes", sizes);
             model.addAttribute("roastLevels", roastLevels);
             model.addAttribute("brewMethods", brewMethods);
-            return "add";
+            return "add";  // Make sure the 'add' template is loaded
         }
+
+        // Assign ID BEFORE handling the image
         coffee.setId(coffeeService.getLastId() + 1);
-        coffeeService.addCoffee(coffee);
-        return "redirect:/";
+
+        // Handle image upload
+        if (!coffeePicture.isEmpty()) {
+            String path = "data/coffee_pictures/";
+            File uploadFolder = new File(path);
+            if (!uploadFolder.exists()) {
+                uploadFolder.mkdirs();
+            }
+
+            String fileName = UUID.randomUUID() + coffeePicture.getOriginalFilename().substring(coffeePicture.getOriginalFilename().lastIndexOf("."));
+            try {
+                coffeePicture.transferTo(new File(uploadFolder.getAbsolutePath() + File.separator + fileName));
+                coffee.setCoffeePicture(fileName);
+            } catch (IOException e) {
+                System.out.println("File upload error: " + e.getMessage());
+            }
+        }
+
+        coffeeService.addCoffee(coffee);  // Save the coffee with the new picture
+        return "redirect:/";  // Redirect to the list page
     }
+
+
 
     /**
      * Displays the edit form for a specific coffee entry.
@@ -90,7 +141,11 @@ public class CoffeeController {
      * @return Name of the Thymeleaf template to render, or redirect to home if coffee not found.
      */
     @GetMapping("/edit")
-    public String edit(@RequestParam int id, Model model) {
+    public String edit(@RequestParam int id, Model model, HttpSession session) {
+        CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
+        if(currentUser == null){
+            return "redirect:/login";
+        }
         Coffee coffee = coffeeService.getCoffee(id);
         if (coffee != null) {
             model.addAttribute("coffee", coffee);
@@ -112,7 +167,11 @@ public class CoffeeController {
      * @return Redirects to the home page or reloads the edit form on validation failure.
      */
     @PostMapping("/update")
-    public String update(@ModelAttribute("coffee") @Valid Coffee coffee, BindingResult bindingResult, Model model) {
+    public String update(@ModelAttribute("coffee") @Valid Coffee coffee, BindingResult bindingResult, Model model, HttpSession session) {
+        CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
+        if(currentUser == null){
+            return "redirect:/login";
+        }
         if (bindingResult.hasErrors()) {
             model.addAttribute("types", types);
             model.addAttribute("sizes", sizes);
@@ -123,4 +182,12 @@ public class CoffeeController {
         coffeeService.updateCoffee(coffee.getId(), coffee);
         return "redirect:/";
     }
+
+    @GetMapping("/coffee/{id}")
+    public String view(@PathVariable int id, Model model) {
+        Coffee coffee = coffeeService.getCoffee(id);
+        model.addAttribute("coffee", coffee);
+        return "coffee"; // This should point to a Thymeleaf template named coffee.html
+    }
+
 }

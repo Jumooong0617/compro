@@ -40,12 +40,14 @@ public class Coffee {
     @NotBlank(message = "Brew method is required")
     private String brewMethod;
 
+    private String coffeePicture;
+
     // Constructors, getters, setters, etc.
 
     public Coffee() {}
 
     public Coffee(int id, String name, String type, String size, double price, String roastLevel,
-                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod) {
+                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod, String coffeePicture) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -57,6 +59,7 @@ public class Coffee {
         this.stock = stock;
         this.flavorNotes = flavorNotes;
         this.brewMethod = brewMethod;
+        this.coffeePicture = coffeePicture;
     }
 
     public int getId() {
@@ -146,5 +149,14 @@ public class Coffee {
     public void setBrewMethod(String brewMethod) {
         this.brewMethod = brewMethod;
     }
+
+    public String getCoffeePicture() {
+        return coffeePicture;
+    }
+
+    public void setCoffeePicture(String profilePicture) {
+        this.coffeePicture = profilePicture;
+    }
 }
+
 

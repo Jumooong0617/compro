@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/css/form.css">
 <head>
     <title>Edit Coffee</title>
 </head>
@@ -74,25 +74,32 @@
             <label>Flavor Notes:</label>
             <div class="checkbox-group">
                 <label class="checkbox-item">
-                    <input type="checkbox" th:field="*{flavorNotes}" value="Chocolate">Chocolate
+                    <input type="checkbox" name="flavorNotes" value="Chocolate"
+                           th:checked="${#strings.contains(coffee.flavorNotes, 'Chocolate')}">Chocolate
                 </label>
                 <label class="checkbox-item">
-                    <input type="checkbox" th:field="*{flavorNotes}" value="Mint">Mint
+                    <input type="checkbox" name="flavorNotes" value="Mint"
+                           th:checked="${#strings.contains(coffee.flavorNotes, 'Mint')}">Mint
                 </label>
                 <label class="checkbox-item">
-                    <input type="checkbox" th:field="*{flavorNotes}" value="Herbal">Herbal
+                    <input type="checkbox" name="flavorNotes" value="Herbal"
+                           th:checked="${#strings.contains(coffee.flavorNotes, 'Herbal')}">Herbal
                 </label>
                 <label class="checkbox-item">
-                    <input type="checkbox" th:field="*{flavorNotes}" value="Roasted">Roasted
+                    <input type="checkbox" name="flavorNotes" value="Roasted"
+                           th:checked="${#strings.contains(coffee.flavorNotes, 'Roasted')}">Roasted
                 </label>
                 <label class="checkbox-item">
-                    <input type="checkbox" th:field="*{flavorNotes}" value="Caramel">Caramel
+                    <input type="checkbox" name="flavorNotes" value="Caramel"
+                           th:checked="${#strings.contains(coffee.flavorNotes, 'Caramel')}">Caramel
                 </label>
                 <label class="checkbox-item">
-                    <input type="checkbox" th:field="*{flavorNotes}" value="Nutty">Nutty
+                    <input type="checkbox" name="flavorNotes" value="Nutty"
+                           th:checked="${#strings.contains(coffee.flavorNotes, 'Nutty')}">Nutty
                 </label>
             </div>
         </div>
+
 
         <div>
             <label for="brewMethods">Brew Method:</label>
@@ -103,9 +110,10 @@
         </div>
 
         <div class="action">
-            <button type="submit">Update Coffee</button>
-            <a href="/">Back to List</a>
+            <a href="/" class="button cancel">Back to List</a>
+            <button type="submit" class="button">Submit</button>
         </div>
+
     </form>
 </div>
 </body>

@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    --color-bg: #1a1f1c;             /* dark green-black background */
+    --color-surface: #2b352f;        /* matcha surface */
+    --color-primary: #64b94c;        /* vibrant matcha green */
+    --color-primary-hover: #4fa13a;  /* darker green on hover */
+    --color-text: #e0f2e9;           /* pale matcha-white text */
+    --color-error: #f87171;          /* soft red for errors */
+    --color-border: #3c4742;         /* subtle border */
+    --border-radius: 0.75rem;
+    --transition: all 0.2s ease-in-out;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--color-text);
+}
+
+form {
+    background: var(--color-surface);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 720px;
+    margin: auto;
+}
+
+form > div {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: #202824;
+    color: var(--color-text);
+}
+
+select {
+    appearance: none;
+    background-color: #202824;
+    background-image: url("data:image/svg+xml,%3Csvg fill='none' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5H7z' fill='%23e0f2e9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(100, 185, 76, 0.3);
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.error {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border-color: var(--color-error);
+    background-color: #3a1f1f;
+}
+
+button, a.button {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+button:hover {
+    background: var(--color-primary-hover);
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+div.action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem; /* To add some spacing at the top if needed */
+}
+
+.button {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.button:hover {
+    background: var(--color-primary-hover);
+}
+
+.button.cancel {
+    background: #be123c;
+    color: white;
+}
+
+.button.cancel:hover {
+    background: #9f1239;
+}

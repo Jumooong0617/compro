@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Coffee List</title>
-
 </head>
 <body>
 
 <div class="container">
     <h1>Coffee Ordering</h1>
+
+    <!-- Logout Button -->
+    <div class="logout-container">
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
     <a href="/add" class="coffee-btn">Add New Coffee</a>
+
+    <!-- Search Bar -->
     <div class="search-bar-container">
         <form>
             <input type="text" name="search" class="search-bar" placeholder="Search coffee...">
@@ -51,11 +58,11 @@
             <td th:text="${coffee.brewMethod}"></td>
             <td>
                 <div class="actions">
-                    <a th:href="@{/edit(id=${coffee.id})}" class="btn">Edit</a>
-                    <a th:href="@{/delete(id=${coffee.id})}" class="btn">Delete</a>
+                    <a th:href="@{/coffee/{id}(id=${coffee.id})}"  class="view">View</a>
+                    <a th:href="@{/edit(id=${coffee.id})}" class="edit">Edit</a>
+                    <a th:href="@{/delete(id=${coffee.id})}" class="delete">Delete</a>
                 </div>
             </td>
-
         </tr>
         </tbody>
     </table>

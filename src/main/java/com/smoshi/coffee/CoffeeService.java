@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Service
 public class CoffeeService {
     private ArrayList<Coffee> coffees;
-    private final String FILE_NAME = "coffee_database.csv";
+    private final String FILE_NAME = "data/coffee_database.csv";
 
     /**
      * Initializes the coffee list and loads data from disk.
@@ -115,6 +115,7 @@ public class CoffeeService {
                         + c.isDecaf() + ","
                         + c.getStock() + ","
                         + c.getBrewMethod() + ","
+                        + c.getCoffeePicture() + ","
                         + String.join(";", c.getFlavorNotes()));
                 bw.newLine();
             }
@@ -150,11 +151,13 @@ public class CoffeeService {
                 c.setDecaf(Boolean.parseBoolean(data[7]));
                 c.setStock(Integer.parseInt(data[8]));
                 c.setBrewMethod(data[9]);
+                c.setCoffeePicture(data[10]);
 
-                if (data.length >= 11) {
-                    c.setFlavorNotes(data[10]);
+                // Handle FlavorNotes
+                if (data.length >= 12 && !data[11].isEmpty()) {
+                    c.setFlavorNotes(data[11].trim());
                 } else {
-                    c.setFlavorNotes("");
+                    c.setFlavorNotes(""); // Empty string if no flavor notes
                 }
 
                 coffees.add(c);
