@@ -1,12 +1,8 @@
-package com.smoshi.coffee;
+package com.smoshi.coffee.models;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Coffee {
 

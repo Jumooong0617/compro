@@ -12,7 +12,7 @@
 }
 
 * {
-    box-sizing: border-box; /* Ensure consistent box model */
+    box-sizing: border-box;
 }
 
 body {
@@ -30,7 +30,7 @@ body {
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    overflow: hidden; /* Prevent overflow */
+    overflow: hidden;
 }
 
 .login-container h2 {
@@ -49,7 +49,7 @@ body {
 
 .login-container input[type="text"],
 .login-container input[type="password"] {
-    width: calc(100%); /* Adjust width for padding */
+    width: calc(100%);
     padding: 0.65rem 1rem;
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
@@ -58,7 +58,7 @@ body {
     background: #dfeade;
     color: #1f2e1f;
     margin-bottom: 1rem;
-    max-width: 100%; /* Prevent overflow */
+    max-width: 100%;
 }
 
 .login-container input:focus {
@@ -118,3 +118,22 @@ input.error {
 .login-container .forgot-password a:hover {
     color: var(--color-primary);
 }
+
+.login-container.has-error {
+    background-color: #ffecec;
+    border: 2px solid var(--color-error);
+}
+
+.login-container.has-error h2 {
+    color: #a94442;
+}
+
+.error-text {
+    color: var(--color-error);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+
+
+

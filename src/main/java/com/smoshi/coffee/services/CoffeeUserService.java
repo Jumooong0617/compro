@@ -1,5 +1,6 @@
-package com.smoshi.coffee;
+package com.smoshi.coffee.services;
 
+import com.smoshi.coffee.models.CoffeeUser;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 

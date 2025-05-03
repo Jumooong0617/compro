@@ -1,4 +1,4 @@
-package com.smoshi.coffee;
+package com.smoshi.coffee.models;
 
 import jakarta.validation.constraints.NotBlank;
 

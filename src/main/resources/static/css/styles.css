@@ -43,7 +43,7 @@ a.button\:hover {
     color: var(--color-primary-hover);
 }
 
-/* Logout Button */
+
 .logout-container {
     text-align: right;
     margin-bottom: 1rem;
@@ -63,7 +63,7 @@ a.button\:hover {
     background: #6b886b;
 }
 
-/* Add Coffee Button */
+
 .coffee-btn {
     display: inline-block;
     margin-bottom: 1rem;
@@ -79,7 +79,6 @@ a.button\:hover {
     background: var(--color-primary-hover);
 }
 
-/* Search Bar */
 form {
     display: flex;
     gap: 0.5rem;
@@ -118,7 +117,7 @@ form {
     background: var(--color-primary-hover);
 }
 
-/* Table */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -145,53 +144,52 @@ tr\:last-child td {
     border-bottom: none;
 }
 
-/* Actions */
+
 .actions {
     display: flex;
-    gap: 0.5rem; /* Ensure spacing between action buttons */
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .actions a {
     text-decoration: none;
     padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius);
-    background: #556b55; /* Default button color */
+    background: #556b55;
     color: var(--color-text);
     transition: var(--transition);
-    display: inline-block; /* Ensure buttons are inline-block */
+    display: inline-block;
 }
 
 .actions a:hover {
     background: var(--color-muted);
 }
 
-/* View button consistency */
 .actions .view {
-    background: #3b82f6; /* Blue background for "View" button */
-    color: white; /* White text */
+    background: #3b82f6;
+    color: white;
 }
 
 .actions .view:hover {
-    background: #1e56a0; /* Darker blue on hover */
+    background: #1e56a0;
 }
 
-/* Edit button consistency */
+
 .actions .edit {
-    background: #f59e0b; /* Yellow background for "Edit" button */
+    background: #f59e0b;
     color: #1f2e1f;
 }
 
 .actions .edit:hover {
-    background: #d77e09; /* Darker yellow on hover */
+    background: #d77e09;
 }
 
-/* Delete button consistency */
+
 .actions .delete {
-    background: #dc2626; /* Red background for "Delete" button */
+    background: #dc2626; /
     color: white;
 }
 
 .actions .delete:hover {
-    background: #b91c1c; /* Darker red on hover */
+    background: #b91c1c;
 }

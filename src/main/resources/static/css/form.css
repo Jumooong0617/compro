@@ -5,13 +5,13 @@
 :root {
     --font-sans: 'Inter', system-ui, sans-serif;
 
-    --color-bg: #1a1f1c;             /* dark green-black background */
-    --color-surface: #2b352f;        /* matcha surface */
-    --color-primary: #64b94c;        /* vibrant matcha green */
-    --color-primary-hover: #4fa13a;  /* darker green on hover */
-    --color-text: #e0f2e9;           /* pale matcha-white text */
-    --color-error: #f87171;          /* soft red for errors */
-    --color-border: #3c4742;         /* subtle border */
+    --color-bg: #1a1f1c;
+    --color-surface: #2b352f;
+    --color-primary: #64b94c;
+    --color-primary-hover: #4fa13a;
+    --color-text: #e0f2e9;
+    --color-error: #f87171;
+    --color-border: #3c4742;
     --border-radius: 0.75rem;
     --transition: all 0.2s ease-in-out;
 }

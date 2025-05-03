@@ -1,5 +1,6 @@
-package com.smoshi.coffee;
+package com.smoshi.coffee.services;
 
+import com.smoshi.coffee.models.Coffee;
 import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.ArrayList;
