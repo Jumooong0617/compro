@@ -1,56 +1,48 @@
-package com.jumooong.forms;
+package com.jumooong.forms.models;
 
-import jakarta.validation.constraints.*;
-
-import java.util.List;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 public class Coffee {
+
     private int id;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Coffee name is required")
     private String name;
 
-    @NotBlank(message = "Type is required")
-    private String type; // Select: "Arabica", "Robusta"
+    @NotBlank(message = "Coffee type is required")
+    private String type;
 
-    @NotBlank(message = "Size is required")
-    private String size; // Select: "Small", "Medium", "Large"
+    @NotBlank(message = "Coffee size is required")
+    private String size;
 
-    @DecimalMin(value = "0.01", message = "Price must be at least 0.01")
+    @DecimalMin(value = "0.1", message = "Price must be greater than 0")
     private double price;
 
     @NotBlank(message = "Roast level is required")
-    private String roastLevel; // Select: "Light", "Medium", "Dark"
+    private String roastLevel;
 
     @NotBlank(message = "Origin is required")
-    private String origin; // Optional
+    private String origin;
 
-    private boolean isDecaf; // Optional checkbox
+    private boolean isDecaf;
 
     @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
 
-    private List<String> flavorNotes; // Optional checkbox group
+    private String flavorNotes;
 
     @NotBlank(message = "Brew method is required")
-    private String brewMethod; // Select: "Drip", "French Press", "Espresso"
+    private String brewMethod;
 
-    // No-argument constructor
-    public Coffee() {
-        this.name = "";
-        this.type = "";
-        this.size = "";
-        this.price = 0.0;
-        this.roastLevel = "";
-        this.origin = "";
-        this.isDecaf = false;
-        this.stock = 0;
-        this.flavorNotes = null;
-        this.brewMethod = "";
-    }
+    private String coffeePicture;
 
-    // All-argument constructor
-    public Coffee(int id, String name, String type, String size, double price, String roastLevel, String origin, boolean isDecaf, int stock, List<String> flavorNotes, String brewMethod) {
+
+    public Coffee() {}
+
+    public Coffee(int id, String name, String type, String size, double price, String roastLevel,
+                  String origin, boolean isDecaf, int stock, String flavorNotes, String brewMethod, String coffeePicture) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -62,9 +54,9 @@ public class Coffee {
         this.stock = stock;
         this.flavorNotes = flavorNotes;
         this.brewMethod = brewMethod;
+        this.coffeePicture = coffeePicture;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -137,11 +129,11 @@ public class Coffee {
         this.stock = stock;
     }
 
-    public List<String> getFlavorNotes() {
+    public String getFlavorNotes() {
         return flavorNotes;
     }
 
-    public void setFlavorNotes(List<String> flavorNotes) {
+    public void setFlavorNotes(String flavorNotes) {
         this.flavorNotes = flavorNotes;
     }
 
@@ -151,5 +143,13 @@ public class Coffee {
 
     public void setBrewMethod(String brewMethod) {
         this.brewMethod = brewMethod;
+    }
+
+    public String getCoffeePicture() {
+        return coffeePicture;
+    }
+
+    public void setCoffeePicture(String profilePicture) {
+        this.coffeePicture = profilePicture;
     }
 }

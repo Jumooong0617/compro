@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="/css/add-edit.css">
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Edit Coffee</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/add-edit.css">
+    <title>New Coffee</title>
 </head>
 <body>
+
 <div class="form-container">
-    <h1>Edit Coffee</h1>
-    <form th:action="@{/update}" th:object="${coffee}" method="POST" enctype="multipart/form-data">
+    <h1>Add New Coffee</h1>
+    <form th:action="@{/save}" th:object="${coffee}" method="POST" enctype="multipart/form-data">
         <div>
             <label for="name">Name:</label>
             <input type="text" id="name" th:field="*{name}" placeholder="Enter coffee name"
@@ -105,7 +108,7 @@
 
         <div class="action">
             <a href="/" class="cancel">Back to List</a>
-            <button type="submit" class="button">Update</button>
+            <button type="submit" class="button">Submit</button>
         </div>
 
     </form>

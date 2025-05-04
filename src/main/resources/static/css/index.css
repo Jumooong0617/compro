@@ -1,0 +1,153 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #2c1d15;
+    color: #e4d3b7;
+    margin: 0;
+    padding: 0;
+}
+
+.container-new {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.logout-container-new {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.logout-btn-new {
+    background-color: #d7a86e;
+    color: #3e2723;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.logout-btn-new:hover {
+    background-color: #c69463;
+}
+
+.coffee-btn-new {
+    display: inline-block;
+    background-color: #d7a86e;
+    color: #3e2723;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.coffee-btn-new:hover {
+    background-color: #c69463;
+}
+
+.search-bar-container-new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-bar-new {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.search-btn-new {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #d7a86e;
+    color: #3e2723;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-btn-new:hover {
+    background-color: #c69463;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #3e2723;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 2px solid #5d4037;
+    text-align: left;
+}
+
+th {
+    background-color: #795548;
+    color: white;
+    font-size: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #4e342e;
+}
+
+tr:hover {
+    background-color: #6d4c41;
+}
+
+.actions-new {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.actions-new a {
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.view-new {
+    background-color: #8d6e63;
+    color: white;
+}
+
+.edit-new {
+    background-color: #d7a86e;
+    color: #3e2723;
+}
+
+.delete-new {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.view-new:hover {
+    background-color: #a1887f;
+}
+
+.edit-new:hover {
+    background-color: #c69463;
+}
+
+.delete-new:hover {
+    background-color: #ff4c4c;
+}
