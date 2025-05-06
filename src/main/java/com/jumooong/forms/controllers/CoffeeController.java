@@ -26,7 +26,7 @@ public class CoffeeController {
 
     @GetMapping("/")
     public String index(@RequestParam(required = false) String search, Model model, HttpSession session) {
-        AppUser currentUser = (AppUser) session.getAttribute("user");
+        AppUser currentUser = (AppUser) session.getAttribute("LoggedInUser");
         if (currentUser == null) {
             return "redirect:/login";
         }
@@ -37,7 +37,7 @@ public class CoffeeController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam int id, HttpSession session) {
-        AppUser currentUser = (AppUser) session.getAttribute("user");
+        AppUser currentUser = (AppUser) session.getAttribute("LoggedInUser");
         if (currentUser == null) {
             return "redirect:/login";
         }
@@ -48,7 +48,7 @@ public class CoffeeController {
 
     @GetMapping("/new")
     public String create(Model model, HttpSession session) {
-        AppUser currentUser = (AppUser) session.getAttribute("user");
+        AppUser currentUser = (AppUser) session.getAttribute("LoggedInUser");
         if (currentUser == null) {
             return "redirect:/login";
         }
@@ -67,7 +67,7 @@ public class CoffeeController {
                         BindingResult bindingResult,
                         Model model,
                         HttpSession session) {
-        AppUser currentUser = (AppUser) session.getAttribute("user");
+        AppUser currentUser = (AppUser) session.getAttribute("LoggedInUser");
         if (currentUser == null) {
             return "redirect:/login";
         }
@@ -85,7 +85,7 @@ public class CoffeeController {
 
     @GetMapping("/edit")
     public String edit(@RequestParam int id, Model model, HttpSession session) {
-        AppUser currentUser = (AppUser) session.getAttribute("user");
+        AppUser currentUser = (AppUser) session.getAttribute("LoggedInUser");
         if (currentUser == null) {
             return "redirect:/login";
         }
@@ -107,7 +107,7 @@ public class CoffeeController {
                          BindingResult bindingResult,
                          Model model,
                          HttpSession session) {
-        AppUser currentUser = (AppUser) session.getAttribute("user");
+        AppUser currentUser = (AppUser) session.getAttribute("LoggedInUser");
         if (currentUser == null) {
             return "redirect:/login";
         }

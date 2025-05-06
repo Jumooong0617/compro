@@ -1,7 +1,6 @@
 package com.jumooong.forms.services;
 
 import com.jumooong.forms.models.AppUser;
-import com.jumooong.forms.models.Coffee;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CoffeeUserService {
+public class UserService {
     private List<AppUser> users;
 
     @PostConstruct
@@ -41,6 +40,5 @@ public class CoffeeUserService {
 
     public void save(AppUser appUser) {
         users.add(appUser);
-        // TODO: Optionally persist back to CSV if needed
     }
 }
