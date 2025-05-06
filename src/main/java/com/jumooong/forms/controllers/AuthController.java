@@ -1,6 +1,7 @@
-package com.jumooong.forms;
+package com.jumooong.forms.controllers;
 
 
+import com.jumooong.forms.models.AppUser;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

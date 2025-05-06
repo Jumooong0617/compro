@@ -1,5 +1,8 @@
-package com.jumooong.forms;
+package com.jumooong.forms.controllers;
 
+import com.jumooong.forms.models.AppUser;
+import com.jumooong.forms.models.Coffee;
+import com.jumooong.forms.services.CoffeeService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

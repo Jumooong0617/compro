@@ -1,10 +1,11 @@
-package com.jumooong.forms;
+package com.jumooong.forms.models;
 
 import jakarta.validation.constraints.NotBlank;
 
 public class AppUser {
     @NotBlank(message = "Please input your username.")
     private String username;
+    @NotBlank(message = "Please input your password.")
     private String password;
 
     public String getUsername() {

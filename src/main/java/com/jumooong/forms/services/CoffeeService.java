@@ -1,5 +1,6 @@
-package com.jumooong.forms;
+package com.jumooong.forms.services;
 
+import com.jumooong.forms.models.Coffee;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
