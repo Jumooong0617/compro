@@ -1,4 +1,4 @@
-package com.smoshi.coffee.models;
+package com.jumong.coffee.models;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -23,7 +23,6 @@ public class Coffee {
     @NotBlank(message = "Roast level is required")
     private String roastLevel;
 
-    @NotBlank(message = "Origin is required")
     private String origin;
 
     private boolean isDecaf;

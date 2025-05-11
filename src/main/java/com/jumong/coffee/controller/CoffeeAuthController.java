@@ -1,7 +1,7 @@
-package com.smoshi.coffee.controller;
+package com.jumong.coffee.controller;
 
-import com.smoshi.coffee.services.CoffeeUserService;
-import com.smoshi.coffee.models.CoffeeUser;
+import com.jumong.coffee.services.CoffeeUserService;
+import com.jumong.coffee.models.CoffeeUser;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

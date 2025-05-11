@@ -1,4 +1,4 @@
-package com.smoshi.coffee;
+package com.jumong.coffee;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

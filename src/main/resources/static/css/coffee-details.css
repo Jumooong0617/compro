@@ -3,14 +3,14 @@
 }
 
 :root {
-    --font-sans: 'Inter', system-ui, sans-serif;
-    --color-bg: #1f2a24;              /* Deep matcha background */
-    --color-surface: #2e3b34;         /* Card surface */
-    --color-primary: #7CB342;         /* Matcha green */
-    --color-text: #f0f0f0;            /* Light text */
-    --color-muted: #cdd5c6;
-    --color-border: #3e4b44;
-    --border-radius: 1rem;            /* Increased border-radius */
+    --font-sans: 'Courier New', Courier, monospace;
+    --color-bg: #2c1d15;              /* Deep earthy background */
+    --color-surface: #3e2723;         /* Card surface - dark brown */
+    --color-primary: #d7a86e;         /* Light brown accent */
+    --color-text: #e4d3b7;            /* Warm beige text */
+    --color-muted: #bcae9c;           /* Muted accent text */
+    --color-border: #5d4037;          /* Border brown */
+    --border-radius: 1rem;
     --transition: all 0.3s ease-in-out;
 }
 
@@ -74,7 +74,7 @@ body {
 }
 
 .details div {
-    background: #3a473f;
+    background: #4e342e;
     padding: 1.25rem 1.5rem;
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
@@ -86,7 +86,7 @@ body {
 }
 
 .details div:hover {
-    background: #455247;
+    background: #5d4037;
 }
 
 .details div strong {
@@ -102,7 +102,7 @@ body {
     font-weight: 400;
     font-size: 1.1rem;
     color: var(--color-text);
-    background: #50634f;
+    background: #6d4c41;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
     align-self: flex-start;
@@ -114,7 +114,7 @@ body {
     color: var(--color-muted);
     font-weight: 400;
     font-size: 1.1rem;
-    background: #50634f;
+    background: #6d4c41;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
     align-self: flex-start;
@@ -124,7 +124,7 @@ body {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     background: var(--color-primary);
-    color: #fff;
+    color: #3e2723;
     text-decoration: none;
     font-weight: 600;
     border-radius: var(--border-radius);
@@ -135,6 +135,6 @@ body {
 }
 
 .button:hover {
-    background: #689f38;
+    background: #c99a5e;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
