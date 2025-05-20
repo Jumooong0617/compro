@@ -5,20 +5,20 @@
     <li th:attr="data-url=${url}"
         th:classappend="${activeMenu == menuKey ? 'active' : ''}">
         <span th:switch="${menuKey}">
-            <svg th:case="'home'" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3">
-                <path d="M3 12l9-9 9 9v9a3 3 0 0 1-3 3h-3v-6h-6v6H6a3 3 0 0 1-3-3v-9z" stroke="none"/>
+            <svg th:case="'home'" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+                <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
             </svg>
-            <svg th:case="'catalog'" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3">
-                <rect x="3" y="5" width="18" height="3" rx="1"/>
-                <rect x="3" y="10.5" width="18" height="3" rx="1"/>
-                <rect x="3" y="16" width="18" height="3" rx="1"/>
-            </svg>
+
             <svg th:case="'add'" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3">
                 <circle cx="12" cy="12" r="10" stroke="none"/>
                 <path d="M12 8v8M8 12h8" stroke="#e3e3e3" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            <svg th:case="'logout'" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#e3e3e3">
-                <path d="M16 17l5-5-5-5M21 12H9M13 19v-2H5v-6h8v-2" stroke="#e3e3e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <svg th:case="'logout'" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+                <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
+            </svg>
+
+            <svg th:case="'catalog'" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+                <path d="M440-240q-117 0-198.5-81.5T160-520v-240q0-33 23.5-56.5T240-840h500q58 0 99 41t41 99q0 58-41 99t-99 41h-20v40q0 117-81.5 198.5T440-240ZM240-640h400v-120H240v120Zm200 320q83 0 141.5-58.5T640-520v-40H240v40q0 83 58.5 141.5T440-320Zm280-320h20q25 0 42.5-17.5T800-700q0-25-17.5-42.5T740-760h-20v120ZM160-120v-80h640v80H160Zm280-440Z"/>
             </svg>
         </span>
         <span th:text="${label}">Menu Item</span>
