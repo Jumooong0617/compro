@@ -2,19 +2,17 @@
     box-sizing: border-box;
 }
 
-
 :root {
     --font-sans: 'Inter', system-ui, sans-serif;
-    --color-bg: #3b2f2f;             /* Rich coffee bean background */
-    --color-surface: #4e403f;        /* Espresso surface */
-    --color-primary: #a67c52;        /* Latte brown */
-    --color-text: #f5f5f1;           /* Creamy white */
-    --color-muted: #b29d94;          /* Subtle coffee cream */
-    --color-border: #5a4745;         /* Dark roast border */
-    --border-radius: 0.75rem;
+    --color-bg: #1f2a24;              /* Deep matcha background */
+    --color-surface: #2e3b34;         /* Card surface */
+    --color-primary: #7CB342;         /* Matcha green */
+    --color-text: #f0f0f0;            /* Light text */
+    --color-muted: #cdd5c6;
+    --color-border: #3e4b44;
+    --border-radius: 0.75rem;          /* slightly smaller than before */
     --transition: all 0.3s ease-in-out;
 }
-
 
 body {
     font-family: var(--font-sans);
@@ -27,12 +25,11 @@ body {
     min-height: 100vh;
 }
 
-
 .coffee-card {
     background: var(--color-surface);
     border-radius: var(--border-radius);
     padding: 2rem;
-    max-width: 720px;
+    max-width: 720px;         /* narrower like second snippet */
     width: 100%;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     display: flex;
@@ -42,11 +39,9 @@ body {
     position: relative;
 }
 
-
 .profile {
     text-align: center;
 }
-
 
 .profile img {
     width: 140px;
@@ -59,19 +54,16 @@ body {
     margin-top: -80px;
 }
 
-
 .profile h2 {
     font-size: 1.5rem;
     margin-bottom: 0.25rem;
     color: var(--color-primary);
 }
 
-
 .profile p {
     font-size: 1rem;
     color: var(--color-muted);
 }
-
 
 .details {
     display: grid;
@@ -80,10 +72,9 @@ body {
     font-size: 1rem;
 }
 
-
 .details div {
-    background: #5a4745;
-    padding: 1.25rem 1.5rem;
+    background: #3a473f;
+    padding: 1.25rem 1.5rem;     /* <-- updated padding */
     border-left: 4px solid var(--color-primary);
     border-radius: var(--border-radius);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -93,9 +84,8 @@ body {
 
 
 .details div:hover {
-    background: #6d5654;
+    background: #455247;                      /* from original hover */
 }
-
 
 .details div strong {
     font-weight: 600;
@@ -106,16 +96,15 @@ body {
     letter-spacing: 0.5px;
 }
 
-
 .details div span {
     font-weight: 400;
     font-size: 1.1rem;
     color: var(--color-text);
-    background: #7a5c54;
+    background: #50634f;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
+    align-self: flex-start;
 }
-
 
 .details ul {
     margin-top: 0.5rem;
@@ -123,11 +112,11 @@ body {
     color: var(--color-muted);
     font-weight: 400;
     font-size: 1.1rem;
-    background: #7a5c54;
+    background: #50634f;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
+    align-self: flex-start;
 }
-
 
 .button {
     display: inline-block;
@@ -143,8 +132,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .button:hover {
-    background: #8b6a56;
+    background: #689f38;          /* original hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }

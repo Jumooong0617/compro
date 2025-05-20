@@ -1,23 +1,20 @@
 :root {
-    --accent: #6f4e37; /* Coffee brown */
-    --primary: #3e2f23; /* Dark coffee background */
-    --form-border: #5a4329;
+    --accent: #7BB274; /* Matcha green */
+    --primary: #1f2e1f; /* Deep forest green */
+    --form-border: #4e6b4e;
     --border-radius: 8px;
     --transition: all 0.2s ease-in-out;
 
-
-    --error-bg: rgba(192, 57, 43, 0.1);
-    --error-border: #c0392b;
-    --error-text: #e74c3c;
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --error-border: #EF4444;
+    --error-text: #FF6B6B;
 }
-
 
 h1 {
     margin-top: -50px;
     margin-bottom:1rem;
     text-align: left;
 }
-
 
 form {
     background: var(--primary);
@@ -28,19 +25,16 @@ form {
     max-width: 3000px;
 }
 
-
 form > div {
     margin-bottom: 1.25rem;
 }
-
 
 label {
     display: inline-block;
     margin-bottom: 0.4rem;
     font-weight: 600;
-    color: #d7ccc8; /* light coffee cream */
+    color: #e5e7eb;
 }
-
 
 input[type="text"],
 input[type="date"],
@@ -54,23 +48,21 @@ textarea {
     font-family: inherit;
     font-size: 1rem;
     transition: var(--transition);
-    background: #4a3729; /* coffee bean brown */
-    color: #f3e6dc; /* cream text */
+    background: #243a24;
+    color: #f1f5f9;
 }
-
 
 /* Hide the default file input */
 input[type="file"] {
     display: none;
 }
 
-
 /* Style the custom file upload label */
 label.file-upload {
     display: inline-block;
     padding: 0.65rem 1.5rem;
     background: var(--accent);
-    color: #fff;
+    color: white;
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: 600;
@@ -82,35 +74,30 @@ label.file-upload {
     text-align: center;
 }
 
-
 /* Hover effect on the file upload label */
 label.file-upload:hover {
-    background: #5a3f2b; /* darker coffee accent */
-    box-shadow: 0 0 8px rgba(111, 78, 55, 0.6);
+    background: #6a9b5f; /* slightly darker accent */
+    box-shadow: 0 0 8px rgba(123, 178, 116, 0.6);
 }
-
 
 .flavor-label {
-    display: block;
+    display: block;        /* Label on its own line above checkboxes */
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #d7ccc8;
+    color: #e5e7eb;
 }
-
 
 .checkbox-group {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    flex-direction: column;  /* Stack checkboxes vertically */
+    gap: 0.5rem;             /* Space between checkboxes */
 }
 
-
 .checkbox-group label {
-    display: flex;
+    display: flex;           /* Align checkbox and text horizontally */
     align-items: center;
     gap: 0.25rem;
     cursor: pointer;
-    color: #d7ccc8;
 }
 
 
@@ -118,15 +105,13 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: #4a3729;
+    background-color: #243a24;
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 1rem;
     padding-right: 2.5rem;
     cursor: pointer;
-    color: #f3e6dc;
 }
-
 
 input[type="text"]:focus,
 input[type="date"]:focus,
@@ -135,7 +120,7 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(111, 78, 55, 0.3);
+    box-shadow: 0 0 0 2px rgba(123, 178, 116, 0.3);
 }
 
 
@@ -143,19 +128,16 @@ textarea {
     resize: vertical;
 }
 
-
 input[type="radio"] {
     margin-right: 0.5rem;
     accent-color: var(--accent);
 }
-
 
 .error {
     color: var(--error-text);
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
-
 
 input.error,
 select.error,
@@ -185,19 +167,16 @@ a {
     text-decoration: none;
 }
 
-
 div.action {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
 }
 
-
 @media (max-width: 768px) {
     div.action {
         flex-direction: column;
     }
-
 
     button,
     .button {

@@ -1,21 +1,19 @@
 :root {
     --font-sans: 'Inter', system-ui, sans-serif;
-    --color-bg: #3e2f1c;           /* dark coffee brown */
-    --color-surface: #5a4329;      /* medium mocha brown */
-    --color-primary: #d6a15c;      /* caramel gold */
-    --color-primary-hover: #b8853e; /* darker caramel */
-    --color-text: #f3e9dc;         /* cream */
-    --color-border: #7f5e2e;       /* light brown border */
-    --color-error: #d9534f;        /* reddish error */
+    --color-bg: #1f2e1f;
+    --color-surface: #2e422e;
+    --color-primary: #6dbb6d;
+    --color-primary-hover: #5aa05a;
+    --color-text: #e6f2e6;
+    --color-border: #4a634a;
+    --color-error: #ff6b6b;
     --border-radius: 0.75rem;
     --transition: all 0.2s ease-in-out;
 }
 
-
 * {
     box-sizing: border-box;
 }
-
 
 body {
     font-family: var(--font-sans);
@@ -24,7 +22,6 @@ body {
     margin: 0;
     padding: 2rem;
 }
-
 
 .login-container {
     max-width: 420px;
@@ -36,15 +33,12 @@ body {
     overflow: hidden;
 }
 
-
 .login-container h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.75rem;
-    color: var(--color-primary);
-    text-shadow: 0 0 6px rgba(214, 161, 92, 0.6);
+    color: #d4e9d4;
 }
-
 
 .login-container label {
     display: block;
@@ -53,35 +47,31 @@ body {
     color: var(--color-text);
 }
 
-
 .login-container input[type="text"],
 .login-container input[type="password"] {
-    width: 100%;
+    width: calc(100%);
     padding: 0.65rem 1rem;
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     font-family: inherit;
     font-size: 1rem;
-    background: #e8dfd2;          /* light cream */
-    color: #3e2f1c;               /* dark brown text */
+    background: #dfeade;
+    color: #1f2e1f;
     margin-bottom: 1rem;
     max-width: 100%;
 }
 
-
 .login-container input:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgba(214, 161, 92, 0.3);
+    box-shadow: 0 0 0 2px rgba(109, 187, 109, 0.3);
     outline: none;
 }
 
-
 input.error {
     border: 2px solid var(--color-error);
-    background-color: #fceaea;
-    color: #8a2c2c;
+    background-color: #ffecec;
+    color: #600;
 }
-
 
 .login-container .error {
     color: var(--color-error);
@@ -90,7 +80,6 @@ input.error {
     margin-bottom: 0.5rem;
 }
 
-
 .login-container .actions {
     display: flex;
     justify-content: space-between;
@@ -98,11 +87,10 @@ input.error {
     margin-top: 1rem;
 }
 
-
 .login-container button {
     width: 100%;
     background: var(--color-primary);
-    color: var(--color-bg);
+    color: white;
     border: none;
     padding: 0.75rem;
     border-radius: var(--border-radius);
@@ -110,28 +98,42 @@ input.error {
     font-size: 1rem;
     font-weight: 600;
     transition: var(--transition);
-    box-shadow: 0 2px 5px rgba(214, 161, 92, 0.5);
 }
-
 
 .login-container button:hover {
     background: var(--color-primary-hover);
-    box-shadow: 0 4px 10px rgba(184, 133, 62, 0.7);
+}
+
+.login-container .forgot-password {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login-container .forgot-password a {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.login-container .forgot-password a:hover {
+    color: var(--color-primary);
 }
 
 .login-container.has-error {
-    background-color: #fceaea;
+    background-color: #ffecec;
     border: 2px solid var(--color-error);
 }
-
 
 .login-container.has-error h2 {
     color: #a94442;
 }
-
 
 .error-text {
     color: var(--color-error);
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
+
+
+
+

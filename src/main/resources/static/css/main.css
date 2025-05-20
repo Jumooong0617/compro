@@ -1,16 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600;700&display=swap');
 
-
 :root {
     --font-family: "Poppins", sans-serif;
-    --bg-color: #3e2f23;          /* Dark coffee brown background */
-    --text-color: #d7ccc8;        /* Cream/light coffee text */
-    --accent-color: #a67c52;      /* Coffee accent color */
-    --sidebar-bg: #2f2419;        /* Deep coffee bean sidebar background */
-    --sidebar-text: #bfa378;      /* Light brown sidebar text */
-    --sidebar-hover: #5a4329;     /* Medium coffee hover */
+    --bg-color: #2e3b2f;
+    --text-color: #e6f2e6;
+    --accent-color: #b4d6b4;
+    --sidebar-bg: #1f2e1f;
+    --sidebar-text: #a8d0a8;
+    --sidebar-hover: #324d32;
 }
-
 
 *,
 *::before,
@@ -19,7 +17,6 @@
     margin: 0;
     padding: 0;
 }
-
 
 body {
     font-family: var(--font-family);
@@ -35,7 +32,6 @@ body {
     transition: all 0.3s ease;
 }
 
-
 aside {
     grid-area: sidebar;
     background-color: var(--sidebar-bg);
@@ -49,14 +45,12 @@ aside {
     overflow: hidden;
 }
 
-
 .sidebar {
     color: var(--sidebar-text);
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-
 
 .sidebar .brand {
     margin-bottom: 64px;
@@ -65,24 +59,20 @@ aside {
     gap: 8px;
 }
 
-
 .brand img {
     width: 42px;
     height: 42px;
     border-radius: 50%;
 }
 
-
 .brand span {
     font-weight: 600;
     font-size: 26px;
 }
 
-
 .sidebar .menu {
     flex-grow: 1;
 }
-
 
 .sidebar .menu ul {
     list-style: none;
@@ -93,9 +83,8 @@ aside {
     gap: 8px;
 }
 
-
 .sidebar .menu li {
-    color: var(--sidebar-text);
+    color: var(--text-color);
     padding: 11px 16px;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -105,46 +94,38 @@ aside {
     user-select: none;
 }
 
-
 .sidebar .menu li svg {
     margin-right: 14px;
-    flex-shrink: 0;
     width: 24px;
     height: 24px;
-    fill: var(--sidebar-text);
+    fill: var(--text-color);
     transition: fill 0.3s ease;
 }
 
-
 .sidebar .menu li:hover {
     background-color: var(--sidebar-hover);
-    color: var(--sidebar-text);
+    color: var(--text-color);
 }
-
 
 .sidebar .menu li:hover svg {
     fill: var(--sidebar-text);
 }
-
 
 .sidebar .menu li.active {
     background-color: var(--sidebar-hover);
     color: var(--sidebar-text);
 }
 
-
 .sidebar .menu li.active svg {
     fill: var(--sidebar-text);
 }
 
-
 .sidebar .menu li span:last-child {
     margin-left: auto;
-    color: var(--sidebar-text);   /* Hide by default */
+    color: var(--text-color);   /* Hide by default */
     user-select: none;
     transition: color 0.3s ease;
 }
-
 
 .sidebar .menu li.active span:last-child {
     color: var(--text-color);  /* Show when active */
@@ -158,10 +139,9 @@ aside {
     display: flex;
     align-items: center;
     gap: 12px;
-    border-top: 1px solid rgba(215, 204, 200, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     background-color: var(--sidebar-bg);
 }
-
 
 .user-profile img {
     width: 42px;
@@ -169,7 +149,6 @@ aside {
     border-radius: 50%;
     object-fit: cover;
 }
-
 
 .user-profile h1 {
     margin: 0;
@@ -179,12 +158,10 @@ aside {
     line-height: 1.2;
 }
 
-
 .user-profile span {
     font-size: 12px;
-    color: #c1b29b;  /* softer cream */
+    color: #ccc;
 }
-
 
 /* Main Content */
 main {
@@ -195,25 +172,19 @@ main {
     flex-direction: column;
     height: 100vh;
     overflow-y: auto;
-
-
     min-width: 0; /* IMPORTANT: prevent main from overflowing grid */
 }
-
 
 /* added to prevent wide children breaking layout */
 .main-content {
     padding: 0 5vw;
     width: 100%;
     margin: 0 auto;
-
-
     max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
 }
-
 
 /* Headings */
 h1 {
@@ -223,31 +194,23 @@ h1 {
     margin: 1vw 0;
 }
 
-
 /* Responsive: Collapse Sidebar */
 @media (max-width: 48em) {
     body {
-        grid-template-columns: 102px 1fr;
+        grid-template-columns: 102px 1fr; /* Adjust sidebar width */
     }
 
-
-    .brand span,
-    .menu > ul > li > span,
-    .user-profile > div {
+    .brand span, .menu > ul > li > span, .user-profile > div{
         display: none;
     }
 
-
-    /* Fix SVG icon sizing and visibility */
-    .sidebar .menu li svg,
-    .brand img,
-    .user-profile img {
+    svg {
         margin-right: 0;
         width: 24px;
         height: 24px;
         padding: 0;
-        flex-grow: 0;      /* prevent stretching */
-        flex-shrink: 0;    /* prevent shrinking */
-        display: block;    /* ensure visible */
+        flex-grow: 1;
+        overflow: visible;
     }
+
 }

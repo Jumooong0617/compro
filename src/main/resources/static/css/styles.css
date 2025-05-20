@@ -4,48 +4,43 @@
 :root {
     --font-family: "Poppins", sans-serif;
 
+    --primary: #1f2e1f;
+    --secondary: #e6f2e6;
+    --accent: #6dbb6d;
+    --background: #2e422e;
+    --container-bg: #324c32;
+    --card-bg: #3a5c3a;
+    --light-bg: #e6f2e6;
 
-    --primary: #4b2e00;          /* Dark coffee brown */
-    --secondary: #f3ede7;        /* Cream/light beige */
-    --accent: #a5692f;           /* Caramel/golden brown */
-    --background: #362c1a;       /* Rich dark brown background */
-    --container-bg: #4a3b23;     /* Medium brown container */
-    --card-bg: #5a4b2a;          /* Slightly lighter card bg */
-    --light-bg: #f3ede7;         /* Cream for inputs */
+    --btn-view: #4da6ff;
+    --btn-edit: #6dbb6d;
+    --btn-delete: #d9534f;
 
-
-    --btn-view: #855e42;         /* Medium coffee brown button */
-    --btn-edit: #a5692f;         /* Caramel accent */
-    --btn-delete: #b04a1a;       /* Dark reddish brown delete */
-
-
-    --btn-edit-hover: #7a4e18;   /* Darker caramel hover */
-    --btn-delete-hover: #7a2f0a; /* Darker reddish brown hover */
-    --btn-view-hover: #6b4c27;   /* Darker coffee brown hover */
-
+    --btn-edit-hover: #4f9c4f;
+    --btn-delete-hover: #a11c1a;
+    --btn-view-hover: #007acc;
 
     --border-radius: 0.75rem;
     --transition: all 0.2s ease-in-out;
-    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --form-border: #7a633f;      /* Coffee-toned form border */
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --form-border: #d1d5db;
 
-
-    --success-bg: rgba(149, 85, 13, 0.3);
-    --success-border: #95670d;
-    --success-text: #6f4e03;
-    --error-bg: rgba(176, 74, 26, 0.38);
-    --error-border: #b04a1a;
-    --error-text: #7a2f0a;
-    --warning-bg: rgba(181, 111, 46, 0.38);
-    --warning-border: #b56f2e;
-    --warning-text: #7a511d;
+    --success-bg: rgba(22, 192, 152, 0.38);
+    --success-border: #00B087;
+    --success-text: #008767;
+    --error-bg: rgba(239, 68, 68, 0.38);
+    --error-border: #EF4444;
+    --error-text: #B91C1C;
+    --warning-bg: rgba(245, 158, 11, 0.38);
+    --warning-border: #F59E0B;
+    --warning-text: #B45309;
 }
+
 
 
 main {
     padding: 2rem;
 }
-
 
 .container {
     background-color: var(--card-bg);
@@ -56,13 +51,11 @@ main {
     margin: 0 auto;
 }
 
-
 /* Headings */
 h1, h2, h3 {
-    color: var(--secondary);
+    color: #dfe8df;
     margin-bottom: 1rem;
 }
-
 
 /* Links */
 a, a:link {
@@ -72,11 +65,9 @@ a, a:link {
     margin-bottom: 1rem;
 }
 
-
 a:hover {
     text-decoration: underline;
 }
-
 
 /* Forms */
 form {
@@ -87,7 +78,6 @@ form {
     align-items: center;
 }
 
-
 input[type="text"] {
     flex: 1;
     min-width: 200px;
@@ -95,19 +85,17 @@ input[type="text"] {
     border: 1px solid var(--form-border);
     border-radius: var(--border-radius);
     font-family: inherit;
-    background: var(--light-bg);
+    background: white;
     color: var(--primary);
     font-size: 1rem;
     transition: var(--transition);
 }
 
-
 input[type="text"]:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(165, 105, 47, 0.2); /* caramel accent */
+    box-shadow: 0 0 0 2px rgba(109, 187, 109, 0.2); /* rgba for accent */
 }
-
 
 button, .button {
     box-sizing: border-box;
@@ -121,13 +109,11 @@ button, .button {
     font-weight: 600;
 }
 
-
 button:hover {
     border: 2px solid var(--accent);
     background: var(--primary);
     color: var(--accent);
 }
-
 
 /* Feedback Buttons */
 a.button.success {
@@ -137,14 +123,12 @@ a.button.success {
     background: var(--primary);
 }
 
-
 a.button.error {
     padding: 0.4rem 1rem;
     color: var(--error-text);
     border: 2px solid var(--error-border);
     background: var(--primary);
 }
-
 
 a.button.warning {
     padding: 0.4rem 1rem;
@@ -153,26 +137,21 @@ a.button.warning {
     background: var(--primary);
 }
 
-
 a.button:hover {
     text-decoration: none;
 }
-
 
 a.button.success:hover {
     background: var(--success-bg);
 }
 
-
 a.button.error:hover {
     background: var(--error-bg);
 }
 
-
 a.button.warning:hover {
     background: var(--warning-bg);
 }
-
 
 /* Table */
 table {
@@ -184,14 +163,12 @@ table {
     overflow: hidden;
 }
 
-
 th, td {
     padding: 1rem;
-    border-bottom: 1px solid #6b5136;
+    border-bottom: 1px solid #466346;
     text-align: center;
     font-size: 1rem;
 }
-
 
 th {
     background-color: var(--container-bg);
@@ -200,16 +177,13 @@ th {
     font-weight: bold;
 }
 
-
 tr:nth-child(even) {
-    background-color: #4e3b1f;
+    background-color: #2c3f2c;
 }
-
 
 tr:last-child td {
     border-bottom: none;
 }
-
 
 /* Action Buttons */
 .action-links a {
@@ -226,14 +200,12 @@ tr:last-child td {
     transition: var(--transition);
 }
 
-
 .view-btn {
-    background-color: #855e42;
+    background-color: var(--btn-view);
 }
 .view-btn:hover {
-    background-color: #6b4c27;
+    background-color: var(--btn-view-hover);
 }
-
 
 .edit-btn {
     background-color: var(--btn-edit);
@@ -242,7 +214,6 @@ tr:last-child td {
     background-color: var(--btn-edit-hover);
 }
 
-
 .delete-btn {
     background-color: var(--btn-delete);
 }
@@ -250,29 +221,26 @@ tr:last-child td {
     background-color: var(--btn-delete-hover);
 }
 
-
 /* Responsive */
+/* Add this below your existing CSS or replace the current @media section */
+
 @media (max-width: 900px) {
     main {
         padding: 1rem;
     }
 
-
     .container {
         padding: 1rem;
     }
-
 
     form {
         flex-direction: column;
         align-items: stretch;
     }
 
-
     input[type="text"] {
         width: 100%;
     }
-
 
     table {
         font-size: 0.9rem;
@@ -281,12 +249,10 @@ tr:last-child td {
         white-space: nowrap;
     }
 
-
     th, td {
         padding: 0.75rem;
         text-align: left;
     }
-
 
     .action-links a {
         font-size: 0.85rem;
@@ -294,12 +260,10 @@ tr:last-child td {
     }
 }
 
-
 @media (max-width: 600px) {
     h1, h2 {
         font-size: 1.5rem;
     }
-
 
     .action-links a {
         display: block;
@@ -307,8 +271,8 @@ tr:last-child td {
         margin: 4px 0;
     }
 
-
     button, .button {
         width: 100%;
     }
 }
+
