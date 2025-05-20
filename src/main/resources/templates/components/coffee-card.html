@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" /> <!-- Include your updated CSS -->
+</head>
 <body>
 <main>
-    <div class="card-coffee" th:fragment="coffeeCardFragment(coffee)">
-        <div class="image-wrapper">
+    <div class="card-grid">
+        <div class="card-coffee" th:fragment="coffeeCardFragment(coffee)">
             <img class="coffee-image"
                  th:if="${coffee.coffeePicture != null}"
                  th:src="@{'/' + ${coffee.coffeePicture}}"
@@ -12,11 +15,13 @@
                  th:if="${coffee.coffeePicture == null}"
                  th:src="@{'/images/default-coffee.webp'}"
                  alt="Default Coffee" />
+
+            <div class="coffee-info">
+                <h3 th:text="${coffee.name}">Coffee Name</h3>
+                <p><strong th:text="'₱' + ${coffee.price}">₱100</strong></p>
+            </div>
         </div>
-        <div class="coffee-info">
-            <h3 th:text="${coffee.name}">Coffee Name</h3>
-            <p><strong th:text="'₱' + ${coffee.price}">₱100</strong></p>
-        </div>
+        <!-- Repeat or include this via Thymeleaf loop or fragment inclusion -->
     </div>
 </main>
 </body>

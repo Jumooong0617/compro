@@ -1,112 +1,98 @@
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 2rem;
+    padding: 3rem 2rem;
     justify-items: center;
-    padding: 4rem 2rem;
+    background-color: transparent; /* removed background */
+    overflow: visible; /* ensure no scroll */
 }
 
 .card-coffee {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin-top: 10rem;
-}
-
-/* Circle image container */
-.image-wrapper {
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    background-color: #4e3629;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* Coffee image styled as a big circle */
-.coffee-image {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 6px solid #d2b48c;
-}
-
-/* Info box - bigger and more menu-friendly */
-.coffee-info {
-    background-color: #4e3629;
+    background-color: #4e3629; /* rich brown */
     color: #fefefe;
-    border-radius: 25px;
-    text-align: center;
-    padding: 9rem 2rem 3rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    min-height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 280px;  /* fixed width */
+    height: 480px; /* fixed height */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Georgia', serif;
+    box-sizing: border-box; /* includes padding/border in size */
 }
 
-.coffee-info:hover {
+.card-coffee:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+.coffee-image {
+    width: 100%;
+    height: 180px; /* fixed image height */
+    object-fit: cover;
+    border-bottom: 5px solid #d7a86e;
+}
+
+.coffee-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
 }
 
 .coffee-info h3 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    color: #d2b48c;
+    font-size: 1.8rem;
+    color: #d7a86e;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    font-weight: bold;
 }
 
 .coffee-info p {
-    font-size: 1.6rem;
-    margin: 0.5rem 0;
-    color: #e7e3de;
-    line-height: 1.5;
+    font-size: 1.3rem;
+    color: #e4d3b7;
+    line-height: 1.6;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
 }
 
 .coffee-info strong {
+    font-size: 1.6rem;
     color: #ffffff;
-    font-size: 1.7rem;
+    margin-top: 1.2rem;
+    text-align: center;
     display: block;
-    margin-top: 1rem;
 }
 
-/* Mobile responsive tweaks */
-@media (max-width: 768px) {
+/* Responsive tweaks */
+@media (max-width: 1200px) {
     .card-grid {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
     }
 
     .card-coffee {
-        max-width: 90%;
-        margin-top: 8rem;
-    }
-
-    .image-wrapper {
-        top: -80px;
-        padding: 8px;
+        width: 90%;
+        height: 460px;
     }
 
     .coffee-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    .coffee-info {
-        padding-top: 7rem;
-        min-height: 240px;
-    }
-
-    .coffee-info h3 {
-        font-size: 1.6rem;
-    }
-
-    .coffee-info p {
-        font-size: 1.3rem;
-    }
-
-    .coffee-info strong {
-        font-size: 1.5rem;
+        height: 160px;
     }
 }
