@@ -22,11 +22,11 @@
 body {
     font-family: var(--font-family);
     background-color: var(--bg-color);
-    color: var(--text-color);
     display: grid;
-    grid-template-columns: 306px 1fr;
+    grid-template-columns: 306px 1fr; /* wide sidebar and flexible main */
     grid-template-rows: 100vh;
     grid-template-areas: "sidebar main";
+    color: var(--text-color);
     overflow: hidden;
     height: 100vh;
     width: 100vw;
@@ -69,7 +69,6 @@ aside {
 .brand span {
     font-weight: 600;
     font-size: 26px;
-    color: var(--sidebar-text);
 }
 
 .sidebar .menu {
@@ -106,32 +105,33 @@ aside {
 
 .sidebar .menu li:hover {
     background-color: var(--sidebar-hover);
-    color: var(--accent-color);
+    color: var(--text-color);
 }
 
 .sidebar .menu li:hover svg {
-    fill: var(--accent-color);
+    fill: var(--sidebar-text);
 }
 
 .sidebar .menu li.active {
     background-color: var(--sidebar-hover);
-    color: var(--accent-color);
+    color: var(--sidebar-text);
 }
 
 .sidebar .menu li.active svg {
-    fill: var(--accent-color);
+    fill: var(--sidebar-text);
 }
 
 .sidebar .menu li span:last-child {
     margin-left: auto;
-    color: var(--text-color);
+    color: var(--text-color);   /* Hide by default */
     user-select: none;
     transition: color 0.3s ease;
 }
 
 .sidebar .menu li.active span:last-child {
-    color: var(--accent-color);
+    color: var(--text-color);  /* Show when active */
 }
+
 
 /* User Profile at Bottom */
 .user-profile {
@@ -161,7 +161,7 @@ aside {
 
 .user-profile span {
     font-size: 12px;
-    color: #b5a28d;
+    color: #ccc;
 }
 
 /* Main Content */
@@ -173,15 +173,17 @@ main {
     flex-direction: column;
     height: 100vh;
     overflow-y: auto;
-    min-width: 0;
+    min-width: 0; /* IMPORTANT: prevent main from overflowing grid */
 }
 
+/* added to prevent wide children breaking layout */
 .main-content {
     padding: 0 5vw;
     width: 100%;
     margin: 0 auto;
     max-width: 100%;
     overflow-wrap: break-word;
+    word-wrap: break-word;
     word-break: break-word;
 }
 
@@ -196,12 +198,10 @@ h1 {
 /* Responsive: Collapse Sidebar */
 @media (max-width: 48em) {
     body {
-        grid-template-columns: 102px 1fr;
+        grid-template-columns: 102px 1fr; /* Adjust sidebar width */
     }
 
-    .brand span,
-    .menu > ul > li > span,
-    .user-profile > div {
+    .brand span, .menu > ul > li > span, .user-profile > div{
         display: none;
     }
 
@@ -209,6 +209,9 @@ h1 {
         margin-right: 0;
         width: 24px;
         height: 24px;
+        padding: 0;
         flex-grow: 1;
+        overflow: visible;
     }
+
 }
