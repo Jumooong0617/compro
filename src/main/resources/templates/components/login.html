@@ -20,16 +20,14 @@
 
             <div>
                 <label>Username:</label>
-                <input type="text" name="username" placeholder="Enter your username"
-                       th:field="*{username}" autocomplete="off"
+                <input type="text" name="username" th:field="*{username}" autocomplete="off"
                        th:classappend="${#fields.hasErrors('username')} ? 'error' : ''">
                 <p class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
             </div>
 
             <div>
                 <label>Password:</label>
-                <input type="password" name="password" placeholder="Enter your password"
-                       th:field="*{password}" autocomplete="off"
+                <input type="password" name="password" th:field="*{password}" autocomplete="off"
                        th:classappend="${#fields.hasErrors('password')} ? 'error' : ''">
                 <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
             </div>

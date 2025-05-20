@@ -46,7 +46,7 @@ public class CoffeeService {
 
         String lower = keyword.toLowerCase();
         return coffees.stream().filter(c ->
-                        c.getName().toLowerCase().contains(lower) ||
+                c.getName().toLowerCase().contains(lower) ||
                         c.getType().toLowerCase().contains(lower) ||
                         c.getSize().toLowerCase().contains(lower) ||
                         c.getRoastLevel().toLowerCase().contains(lower) ||

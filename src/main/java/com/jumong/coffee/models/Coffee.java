@@ -23,6 +23,7 @@ public class Coffee {
     @NotBlank(message = "Roast level is required")
     private String roastLevel;
 
+    @NotBlank(message = "Origin is required")
     private String origin;
 
     private boolean isDecaf;
@@ -37,7 +38,6 @@ public class Coffee {
 
     private String coffeePicture;
 
-    // Constructors, getters, setters, etc.
 
     public Coffee() {}
 
@@ -152,6 +152,7 @@ public class Coffee {
     public void setCoffeePicture(String profilePicture) {
         this.coffeePicture = profilePicture;
     }
+
 }
 
 

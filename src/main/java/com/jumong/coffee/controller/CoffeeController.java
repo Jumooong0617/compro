@@ -28,6 +28,19 @@ public class CoffeeController {
     private final String[] roastLevels = {"Light", "Medium", "Dark"};
     private final String[] brewMethods = {"Drip", "French Press", "Espresso", "Filter"};
 
+    @GetMapping("/catalog")
+    public String menu(Model model) {
+        model.addAttribute("coffees", coffeeService.getCoffees());
+        model.addAttribute("activeMenu", "catalog");
+        return "catalog";
+    }
+
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        return "layout/main";
+    }
+
     /**
      * Displays the home page with a list of coffees.
      *
@@ -43,6 +56,7 @@ public class CoffeeController {
         }
 
         model.addAttribute("coffees", coffeeService.searchCoffee(search));
+        model.addAttribute("activeMenu", "home");
         return "index";
     }
 
@@ -81,6 +95,7 @@ public class CoffeeController {
         model.addAttribute("sizes", sizes);
         model.addAttribute("roastLevels", roastLevels);
         model.addAttribute("brewMethods", brewMethods);
+        model.addAttribute("activeMenu", "add");
         return "add";
     }
 
@@ -170,11 +185,17 @@ public class CoffeeController {
      * @return Redirects to the home page or reloads the edit form on validation failure.
      */
     @PostMapping("/update")
-    public String update(@ModelAttribute("coffee") @Valid Coffee coffee, BindingResult bindingResult, Model model, HttpSession session) {
+    public String update(@ModelAttribute("coffee") @Valid Coffee coffee,
+                         BindingResult bindingResult,
+                         @RequestParam(value = "flavorNotes", required = false) String[] flavorNotes,
+                         HttpSession session,
+                         Model model) {
+
         CoffeeUser currentUser = (CoffeeUser) session.getAttribute("coffeeUser");
-        if(currentUser == null){
+        if (currentUser == null) {
             return "redirect:/login";
         }
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("types", types);
             model.addAttribute("sizes", sizes);
@@ -182,7 +203,24 @@ public class CoffeeController {
             model.addAttribute("brewMethods", brewMethods);
             return "edit";
         }
-        coffeeService.updateCoffee(coffee.getId(), coffee);
+
+        Coffee existing = coffeeService.getCoffee(coffee.getId());
+        if (existing != null) {
+            // Preserve image if not updated
+            if (coffee.getCoffeePicture() == null || coffee.getCoffeePicture().isEmpty()) {
+                coffee.setCoffeePicture(existing.getCoffeePicture());
+            }
+
+            // Handle flavor notes
+            if (flavorNotes != null) {
+                coffee.setFlavorNotes(String.join(",", flavorNotes));
+            } else {
+                coffee.setFlavorNotes("");
+            }
+
+            coffeeService.updateCoffee(coffee.getId(), coffee);
+        }
+
         return "redirect:/";
     }
 

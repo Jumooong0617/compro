@@ -2,92 +2,100 @@
     box-sizing: border-box;
 }
 
+
 :root {
-    --font-sans: 'Courier New', Courier, monospace;
-    --color-bg: #2c1d15;              /* Deep earthy background */
-    --color-surface: #3e2723;         /* Card surface - dark brown */
-    --color-primary: #d7a86e;         /* Light brown accent */
-    --color-text: #e4d3b7;            /* Warm beige text */
-    --color-muted: #bcae9c;           /* Muted accent text */
-    --color-border: #5d4037;          /* Border brown */
-    --border-radius: 1rem;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --color-bg: #3b2f2f;             /* Rich coffee bean background */
+    --color-surface: #4e403f;        /* Espresso surface */
+    --color-primary: #a67c52;        /* Latte brown */
+    --color-text: #f5f5f1;           /* Creamy white */
+    --color-muted: #b29d94;          /* Subtle coffee cream */
+    --color-border: #5a4745;         /* Dark roast border */
+    --border-radius: 0.75rem;
     --transition: all 0.3s ease-in-out;
 }
+
 
 body {
     font-family: var(--font-sans);
     background: var(--color-bg);
     color: var(--color-text);
     margin: 0;
-    padding: 0;
+    padding: 2rem;
     display: flex;
-    align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
 
+
 .coffee-card {
     background: var(--color-surface);
     border-radius: var(--border-radius);
-    max-width: 800px;
-    padding: 1rem 1rem;
+    padding: 2rem;
+    max-width: 720px;
     width: 100%;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin: 20px auto;
     position: relative;
 }
+
 
 .profile {
     text-align: center;
-    position: relative;
 }
 
+
 .profile img {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
-    background: #111;
-    border: 4px solid var(--color-primary);
+    margin-bottom: 1rem;
+    border: 3px solid var(--color-primary);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     margin-top: -80px;
 }
 
+
 .profile h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin-bottom: 0.25rem;
     color: var(--color-primary);
 }
 
+
 .profile p {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--color-muted);
 }
 
+
 .details {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
     font-size: 1rem;
 }
 
+
 .details div {
-    background: #4e342e;
+    background: #5a4745;
     padding: 1.25rem 1.5rem;
-    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
     border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
+    color: var(--color-text);
 }
 
+
 .details div:hover {
-    background: #5d4037;
+    background: #6d5654;
 }
+
 
 .details div strong {
     font-weight: 600;
@@ -98,15 +106,16 @@ body {
     letter-spacing: 0.5px;
 }
 
+
 .details div span {
     font-weight: 400;
     font-size: 1.1rem;
     color: var(--color-text);
-    background: #6d4c41;
+    background: #7a5c54;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
-    align-self: flex-start;
 }
+
 
 .details ul {
     margin-top: 0.5rem;
@@ -114,27 +123,28 @@ body {
     color: var(--color-muted);
     font-weight: 400;
     font-size: 1.1rem;
-    background: #6d4c41;
+    background: #7a5c54;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
-    align-self: flex-start;
 }
+
 
 .button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     background: var(--color-primary);
-    color: #3e2723;
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
     border-radius: var(--border-radius);
     transition: var(--transition);
-    align-self: center;
+    margin-top: 1rem;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 .button:hover {
-    background: #c99a5e;
+    background: #8b6a56;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
