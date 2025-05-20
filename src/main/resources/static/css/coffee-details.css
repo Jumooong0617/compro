@@ -2,19 +2,17 @@
     box-sizing: border-box;
 }
 
-
 :root {
     --font-sans: 'Inter', system-ui, sans-serif;
-    --color-bg: #3b2f2f;             /* Rich coffee bean background */
-    --color-surface: #4e403f;        /* Espresso surface */
-    --color-primary: #a67c52;        /* Latte brown */
-    --color-text: #f5f5f1;           /* Creamy white */
-    --color-muted: #b29d94;          /* Subtle coffee cream */
-    --color-border: #5a4745;         /* Dark roast border */
+    --color-bg: #3b2f2f;             /* Dark espresso background */
+    --color-surface: #5c4033;        /* Coffee bean brown surface */
+    --color-primary: #d2b48c;        /* Latte/Cream tone */
+    --color-text: #f5f5f5;           /* Light cream text */
+    --color-muted: #c2b9b0;          /* Muted warm taupe */
+    --color-border: #6b4c3b;         /* Mocha border */
     --border-radius: 0.75rem;
     --transition: all 0.3s ease-in-out;
 }
-
 
 body {
     font-family: var(--font-sans);
@@ -26,7 +24,6 @@ body {
     justify-content: center;
     min-height: 100vh;
 }
-
 
 .coffee-card {
     background: var(--color-surface);
@@ -42,11 +39,9 @@ body {
     position: relative;
 }
 
-
 .profile {
     text-align: center;
 }
-
 
 .profile img {
     width: 140px;
@@ -59,19 +54,16 @@ body {
     margin-top: -80px;
 }
 
-
 .profile h2 {
     font-size: 1.5rem;
     margin-bottom: 0.25rem;
     color: var(--color-primary);
 }
 
-
 .profile p {
     font-size: 1rem;
     color: var(--color-muted);
 }
-
 
 .details {
     display: grid;
@@ -80,9 +72,8 @@ body {
     font-size: 1rem;
 }
 
-
 .details div {
-    background: #5a4745;
+    background: #4e3629;            /* Medium roast brown */
     padding: 1.25rem 1.5rem;
     border-left: 4px solid var(--color-primary);
     border-radius: var(--border-radius);
@@ -91,11 +82,9 @@ body {
     color: var(--color-text);
 }
 
-
 .details div:hover {
-    background: #6d5654;
+    background: #5a3e31;            /* Slightly lighter on hover */
 }
-
 
 .details div strong {
     font-weight: 600;
@@ -106,16 +95,15 @@ body {
     letter-spacing: 0.5px;
 }
 
-
 .details div span {
     font-weight: 400;
     font-size: 1.1rem;
     color: var(--color-text);
-    background: #7a5c54;
+    background: #6b4c3b;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
+    align-self: flex-start;
 }
-
 
 .details ul {
     margin-top: 0.5rem;
@@ -123,17 +111,17 @@ body {
     color: var(--color-muted);
     font-weight: 400;
     font-size: 1.1rem;
-    background: #7a5c54;
+    background: #6b4c3b;
     padding: 0.4rem 0.75rem;
     border-radius: 0.5rem;
+    align-self: flex-start;
 }
-
 
 .button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
     background: var(--color-primary);
-    color: #fff;
+    color: #2e2e2e;
     text-decoration: none;
     font-weight: 600;
     border-radius: var(--border-radius);
@@ -143,8 +131,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .button:hover {
-    background: #8b6a56;
+    background: #c19a6b;           /* Toasted almond hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }

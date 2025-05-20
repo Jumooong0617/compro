@@ -1,51 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600;700&display=swap');
 
-
 :root {
     --font-family: "Poppins", sans-serif;
 
+    /* Coffee palette */
+    --primary: #3a2e1c;           /* dark coffee brown */
+    --secondary: #f3e9dc;         /* cream */
+    --accent: #d2b48c;            /* latte caramel */
+    --background: #4b3b1f;        /* medium coffee */
+    --container-bg: #59491f;      /* darker caramel */
+    --card-bg: #6e5c2a;           /* warm card bg */
+    --light-bg: #f3e9dc;          /* light cream */
 
-    --primary: #4b2e00;          /* Dark coffee brown */
-    --secondary: #f3ede7;        /* Cream/light beige */
-    --accent: #a5692f;           /* Caramel/golden brown */
-    --background: #362c1a;       /* Rich dark brown background */
-    --container-bg: #4a3b23;     /* Medium brown container */
-    --card-bg: #5a4b2a;          /* Slightly lighter card bg */
-    --light-bg: #f3ede7;         /* Cream for inputs */
+    /* Buttons */
+    --btn-view: #cfa865;          /* soft caramel */
+    --btn-edit: #d2b48c;          /* latte caramel */
+    --btn-delete: #a1523f;        /* roasted espresso */
 
-
-    --btn-view: #855e42;         /* Medium coffee brown button */
-    --btn-edit: #a5692f;         /* Caramel accent */
-    --btn-delete: #b04a1a;       /* Dark reddish brown delete */
-
-
-    --btn-edit-hover: #7a4e18;   /* Darker caramel hover */
-    --btn-delete-hover: #7a2f0a; /* Darker reddish brown hover */
-    --btn-view-hover: #6b4c27;   /* Darker coffee brown hover */
-
+    --btn-edit-hover: #b89b7e;    /* darker caramel */
+    --btn-delete-hover: #7c3e2f;  /* deep espresso */
+    --btn-view-hover: #b7985a;    /* darker soft caramel */
 
     --border-radius: 0.75rem;
     --transition: all 0.2s ease-in-out;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --form-border: #7a633f;      /* Coffee-toned form border */
+    --form-border: #a18659;
 
-
-    --success-bg: rgba(149, 85, 13, 0.3);
-    --success-border: #95670d;
-    --success-text: #6f4e03;
-    --error-bg: rgba(176, 74, 26, 0.38);
-    --error-border: #b04a1a;
-    --error-text: #7a2f0a;
-    --warning-bg: rgba(181, 111, 46, 0.38);
-    --warning-border: #b56f2e;
-    --warning-text: #7a511d;
+    /* Feedback */
+    --success-bg: rgba(210, 180, 140, 0.38);
+    --success-border: #b89b7e;
+    --success-text: #806a4f;
+    --error-bg: rgba(161, 82, 63, 0.38);
+    --error-border: #a1523f;
+    --error-text: #7c3e2f;
+    --warning-bg: rgba(223, 181, 122, 0.38);
+    --warning-border: #d2b48c;
+    --warning-text: #b89b7e;
 }
-
 
 main {
     padding: 2rem;
+    font-family: var(--font-family);
+    background-color: var(--background);
+    color: var(--secondary);
 }
-
 
 .container {
     background-color: var(--card-bg);
@@ -56,13 +54,11 @@ main {
     margin: 0 auto;
 }
 
-
 /* Headings */
 h1, h2, h3 {
     color: var(--secondary);
     margin-bottom: 1rem;
 }
-
 
 /* Links */
 a, a:link {
@@ -72,11 +68,9 @@ a, a:link {
     margin-bottom: 1rem;
 }
 
-
 a:hover {
     text-decoration: underline;
 }
-
 
 /* Forms */
 form {
@@ -86,7 +80,6 @@ form {
     margin-bottom: 1.5rem;
     align-items: center;
 }
-
 
 input[type="text"] {
     flex: 1;
@@ -101,18 +94,16 @@ input[type="text"] {
     transition: var(--transition);
 }
 
-
 input[type="text"]:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(165, 105, 47, 0.2); /* caramel accent */
+    box-shadow: 0 0 0 2px rgba(210, 180, 140, 0.3); /* latte accent */
 }
-
 
 button, .button {
     box-sizing: border-box;
     background: var(--accent);
-    color: white;
+    color: var(--background);
     border: none;
     padding: 0.65rem 1.2rem;
     border-radius: var(--border-radius);
@@ -121,13 +112,11 @@ button, .button {
     font-weight: 600;
 }
 
-
 button:hover {
     border: 2px solid var(--accent);
     background: var(--primary);
     color: var(--accent);
 }
-
 
 /* Feedback Buttons */
 a.button.success {
@@ -137,14 +126,12 @@ a.button.success {
     background: var(--primary);
 }
 
-
 a.button.error {
     padding: 0.4rem 1rem;
     color: var(--error-text);
     border: 2px solid var(--error-border);
     background: var(--primary);
 }
-
 
 a.button.warning {
     padding: 0.4rem 1rem;
@@ -153,26 +140,21 @@ a.button.warning {
     background: var(--primary);
 }
 
-
 a.button:hover {
     text-decoration: none;
 }
-
 
 a.button.success:hover {
     background: var(--success-bg);
 }
 
-
 a.button.error:hover {
     background: var(--error-bg);
 }
 
-
 a.button.warning:hover {
     background: var(--warning-bg);
 }
-
 
 /* Table */
 table {
@@ -184,14 +166,13 @@ table {
     overflow: hidden;
 }
 
-
 th, td {
     padding: 1rem;
-    border-bottom: 1px solid #6b5136;
+    border-bottom: 1px solid #725d3f;
     text-align: center;
     font-size: 1rem;
+    color: var(--secondary);
 }
-
 
 th {
     background-color: var(--container-bg);
@@ -200,22 +181,19 @@ th {
     font-weight: bold;
 }
 
-
 tr:nth-child(even) {
-    background-color: #4e3b1f;
+    background-color: #5b482a;
 }
-
 
 tr:last-child td {
     border-bottom: none;
 }
 
-
 /* Action Buttons */
 .action-links a {
     padding: 6px 12px;
     margin: 4px 2px;
-    color: white;
+    color: var(--background);
     text-decoration: none;
     font-size: 0.9rem;
     display: inline-block;
@@ -226,30 +204,29 @@ tr:last-child td {
     transition: var(--transition);
 }
 
-
 .view-btn {
-    background-color: #855e42;
+    background-color: var(--btn-view);
+    color: var(--background);
 }
 .view-btn:hover {
-    background-color: #6b4c27;
+    background-color: var(--btn-view-hover);
 }
-
 
 .edit-btn {
     background-color: var(--btn-edit);
+    color: var(--background);
 }
 .edit-btn:hover {
     background-color: var(--btn-edit-hover);
 }
 
-
 .delete-btn {
     background-color: var(--btn-delete);
+    color: var(--light-bg);
 }
 .delete-btn:hover {
     background-color: var(--btn-delete-hover);
 }
-
 
 /* Responsive */
 @media (max-width: 900px) {
@@ -257,22 +234,18 @@ tr:last-child td {
         padding: 1rem;
     }
 
-
     .container {
         padding: 1rem;
     }
-
 
     form {
         flex-direction: column;
         align-items: stretch;
     }
 
-
     input[type="text"] {
         width: 100%;
     }
-
 
     table {
         font-size: 0.9rem;
@@ -281,12 +254,10 @@ tr:last-child td {
         white-space: nowrap;
     }
 
-
     th, td {
         padding: 0.75rem;
         text-align: left;
     }
-
 
     .action-links a {
         font-size: 0.85rem;
@@ -294,19 +265,16 @@ tr:last-child td {
     }
 }
 
-
 @media (max-width: 600px) {
     h1, h2 {
         font-size: 1.5rem;
     }
-
 
     .action-links a {
         display: block;
         width: 100%;
         margin: 4px 0;
     }
-
 
     button, .button {
         width: 100%;

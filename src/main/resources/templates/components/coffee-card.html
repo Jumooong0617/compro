@@ -3,21 +3,21 @@
 <body>
 <main>
     <div class="card-coffee" th:fragment="coffeeCardFragment(coffee)">
-        <img class="coffee-image"
-             th:if="${coffee.coffeePicture != null}"
-             th:src="@{'/' + ${coffee.coffeePicture}}"
-             alt="Coffee Picture" />
-
-        <img class="coffee-image"
-             th:if="${coffee.coffeePicture == null}"
-             th:src="@{'/images/default-coffee.webp'}"
-             alt="Default Coffee" />
-
-        <h3 th:text="${coffee.name}">Coffee Name</h3>
-        <p><strong th:text="'$' + ${coffee.price}">Price</strong></p>
-    </div>
+        <div class="image-wrapper">
+            <img class="coffee-image"
+                 th:if="${coffee.coffeePicture != null}"
+                 th:src="@{'/' + ${coffee.coffeePicture}}"
+                 alt="Coffee Picture" />
+            <img class="coffee-image"
+                 th:if="${coffee.coffeePicture == null}"
+                 th:src="@{'/images/default-coffee.webp'}"
+                 alt="Default Coffee" />
+        </div>
+        <div class="coffee-info">
+            <h3 th:text="${coffee.name}">Coffee Name</h3>
+            <p><strong th:text="'₱' + ${coffee.price}">₱100</strong></p>
+        </div>
     </div>
 </main>
 </body>
 </html>
-
