@@ -121,17 +121,21 @@ aside {
     fill: var(--sidebar-text);
 }
 
-.sidebar .menu li span:last-child {
+.sidebar .menu li .menu-label {
+    /* For the label text */
+    user-select: none;
+}
+
+.sidebar .menu li .menu-arrow {
     margin-left: auto;
-    color: var(--text-color);   /* Hide by default */
+    color: var(--text-color);
     user-select: none;
     transition: color 0.3s ease;
 }
 
-.sidebar .menu li.active span:last-child {
-    color: var(--text-color);  /* Show when active */
+.sidebar .menu li.active .menu-arrow {
+    color: var(--text-color);
 }
-
 
 /* User Profile at Bottom */
 .user-profile {
@@ -149,6 +153,10 @@ aside {
     height: 42px;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.user-profile > div {
+    /* wrapper for name and subtitle */
 }
 
 .user-profile h1 {
@@ -201,17 +209,32 @@ h1 {
         grid-template-columns: 102px 1fr; /* Adjust sidebar width */
     }
 
-    .brand span, .menu > ul > li > span, .user-profile > div{
+    /* Hide brand text but keep logo */
+    .brand span {
         display: none;
     }
 
-    svg {
+    /* Hide menu label and arrow, keep icon only */
+    .sidebar .menu li .menu-label,
+    .sidebar .menu li .menu-arrow {
+        display: none;
+    }
+
+    /* User profile text hidden, keep avatar */
+    .user-profile > div {
+        display: none;
+    }
+
+    /* Adjust SVG icons in menu for centered single icon view */
+    .sidebar .menu li svg {
         margin-right: 0;
         width: 24px;
         height: 24px;
         padding: 0;
         flex-grow: 1;
         overflow: visible;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
-
 }
