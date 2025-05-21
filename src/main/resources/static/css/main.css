@@ -23,7 +23,7 @@ body {
     font-family: var(--font-family);
     background-color: var(--bg-color);
     display: grid;
-    grid-template-columns: 306px 1fr; /* wide sidebar and flexible main */
+    grid-template-columns: 306px 1fr;
     grid-template-rows: 100vh;
     grid-template-areas: "sidebar main";
     color: var(--text-color);
@@ -122,10 +122,8 @@ aside {
 }
 
 .sidebar .menu li .menu-label {
-    /* For the label text */
     user-select: none;
 }
-
 
 /* User Profile at Bottom */
 .user-profile {
@@ -146,7 +144,7 @@ aside {
 }
 
 .user-profile > div {
-    /* wrapper for name and subtitle */
+    /* Optional wrapper for name and subtitle */
 }
 
 .user-profile h1 {
@@ -171,10 +169,9 @@ main {
     flex-direction: column;
     height: 100vh;
     overflow-y: auto;
-    min-width: 0; /* IMPORTANT: prevent main from overflowing grid */
+    min-width: 0;
 }
 
-/* added to prevent wide children breaking layout */
 .main-content {
     padding: 0 5vw;
     width: 100%;
@@ -193,38 +190,37 @@ h1 {
     margin: 1vw 0;
 }
 
-/* Responsive: Collapse Sidebar */
+/* Responsive Sidebar - Mobile / Tablet */
 @media (max-width: 48em) {
     body {
-        grid-template-columns: 102px 1fr; /* Adjust sidebar width */
+        grid-template-columns: 102px 1fr;
     }
 
-    /* Hide brand text but keep logo */
     .brand span {
         display: none;
     }
 
-    /* Hide menu label and arrow, keep icon only */
     .sidebar .menu li .menu-label,
     .sidebar .menu li .menu-arrow {
         display: none;
     }
 
-    /* User profile text hidden, keep avatar */
     .user-profile > div {
         display: none;
     }
 
-    /* Adjust SVG icons in menu for centered single icon view */
+    .sidebar .menu li {
+        justify-content: center;
+        padding: 14px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .sidebar .menu li svg {
-        margin-right: 0;
-        width: 24px;
-        height: 24px;
-        padding: 0;
-        flex-grow: 1;
-        overflow: visible;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0;
+        width: 26px;
+        height: 26px;
+        fill: var(--sidebar-text);
     }
 }
