@@ -2,15 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/login.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/login.css" />
 </head>
 <body>
 
+<div class="login-wrapper" th:classappend="${error} ? 'has-error' : ''">
 
-<div class="login-container" th:classappend="${error} ? 'has-error' : ''">
-    <div class="login-card">
+    <!-- Left: Login Form -->
+    <div class="login-form-section">
         <form method="post" action="/login" th:object="${coffeeUser}">
             <h2>Login</h2>
 
@@ -37,8 +38,26 @@
             </div>
         </form>
     </div>
+
+    <!-- Right: Coffee SVG + Caption -->
+    <div class="login-details">
+        <div class="coffee-illustration">
+            <svg class="coffee-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <!-- Coffee Cup Body -->
+                <path fill="#f3e9dc" d="M12 24h40v24a8 8 0 01-8 8H20a8 8 0 01-8-8V24z"/>
+                <path fill="#3a2e1c" d="M16 28h32v16a4 4 0 01-4 4H20a4 4 0 01-4-4V28z"/>
+                <!-- Cup Handle -->
+                <path fill="#f3e9dc" d="M52 32a8 8 0 010 16h-2v-4h2a4 4 0 000-8h-2v-4h2z"/>
+                <!-- Steam -->
+                <path class="steam" d="M24 12c-2 4 2 6 0 10" />
+                <path class="steam" d="M32 10c-2 4 2 6 0 10" />
+                <path class="steam" d="M40 12c-2 4 2 6 0 10" />
+            </svg>
+            <p class="coffee-caption">Cup of Jumong</p>
+        </div>
+    </div>
+
 </div>
 
 </body>
 </html>
-

@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" /> <!-- Include your updated CSS -->
-</head>
 <body>
 <main>
-    <div class="card-grid">
-        <div class="card-coffee" th:fragment="coffeeCardFragment(coffee)">
-            <img class="coffee-image"
-                 th:if="${coffee.coffeePicture != null}"
-                 th:src="@{'/' + ${coffee.coffeePicture}}"
-                 alt="Coffee Picture" />
-            <img class="coffee-image"
-                 th:if="${coffee.coffeePicture == null}"
-                 th:src="@{'/images/default-coffee.webp'}"
-                 alt="Default Coffee" />
+    <div class="card-coffee" th:fragment="coffeeCardFragment(coffee)">
+        <img class="coffee-image"
+             th:if="${coffee.coffeePicture != null}"
+             th:src="@{'/' + ${coffee.coffeePicture}}"
+             alt="Coffee Picture" />
 
-            <div class="coffee-info">
-                <h3 th:text="${coffee.name}">Coffee Name</h3>
-                <p><strong th:text="'₱' + ${coffee.price}">₱100</strong></p>
-            </div>
-        </div>
-        <!-- Repeat or include this via Thymeleaf loop or fragment inclusion -->
+        <img class="coffee-image"
+             th:if="${coffee.coffeePicture == null}"
+             th:src="@{'/images/default-coffee.webp'}"
+             alt="Default Coffee" />
+
+        <h3 th:text="${coffee.name}">Coffee Name</h3>
+        <p><strong th:text="'$' + ${coffee.price}">Price</strong></p>
+    </div>
     </div>
 </main>
 </body>

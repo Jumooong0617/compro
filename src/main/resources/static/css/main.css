@@ -126,16 +126,6 @@ aside {
     user-select: none;
 }
 
-.sidebar .menu li .menu-arrow {
-    margin-left: auto;
-    color: var(--text-color);
-    user-select: none;
-    transition: color 0.3s ease;
-}
-
-.sidebar .menu li.active .menu-arrow {
-    color: var(--text-color);
-}
 
 /* User Profile at Bottom */
 .user-profile {

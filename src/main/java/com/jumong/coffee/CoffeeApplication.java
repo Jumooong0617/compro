@@ -11,7 +11,7 @@ public class CoffeeApplication {
         run();
         SpringApplication.run(CoffeeApplication.class, args);
     }
-
+    
     public static void run(){
         String encrypted = new BCryptPasswordEncoder().encode("asd");
         System.out.println(encrypted);

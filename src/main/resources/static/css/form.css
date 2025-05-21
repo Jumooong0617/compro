@@ -1,28 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 :root {
-    --accent: #d2b48c; /* Creamy coffee highlight */
-    --primary: #3b2f2f; /* Dark roast background */
-    --form-border: #5e4635; /* Coffee bean border */
+    --font-sans: 'Poppins', system-ui, sans-serif;
+
+    /* Unified Coffee Palette */
+    --primary: #3a2e1c;           /* dark coffee brown */
+    --secondary: #f3e9dc;         /* cream */
+    --accent: #d2b48c;            /* latte caramel */
+    --background: #4b3b1f;        /* medium coffee */
+    --card-bg: #6e5c2a;           /* warm card background */
+    --form-border: #7f5e2e;       /* light brown border */
+
+    --error-bg: #fceaea;
+    --error-border: #d9534f;
+    --error-text: #8a2c2c;
+
     --border-radius: 8px;
     --transition: all 0.2s ease-in-out;
+}
 
-    --error-bg: rgba(239, 68, 68, 0.1);
-    --error-border: #EF4444;
-    --error-text: #FF6B6B;
+body {
+    font-family: var(--font-sans);
+    background-color: var(--background);
+    color: var(--secondary);
 }
 
 h1 {
     margin-top: -50px;
     margin-bottom: 1rem;
     text-align: left;
+    color: var(--secondary);
 }
 
 form {
-    background: var(--primary);
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     max-width: 3000px;
+    font-family: var(--font-sans);
 }
 
 form > div {
@@ -33,7 +50,7 @@ label {
     display: inline-block;
     margin-bottom: 0.4rem;
     font-weight: 600;
-    color: #f5f5f5;
+    color: var(--secondary);
 }
 
 input[type="text"],
@@ -48,21 +65,19 @@ textarea {
     font-family: inherit;
     font-size: 1rem;
     transition: var(--transition);
-    background: #4b3832; /* Medium roast form background */
-    color: #f5f5f5;
+    background: var(--primary);
+    color: var(--secondary);
 }
 
-/* Hide the default file input */
 input[type="file"] {
     display: none;
 }
 
-/* Style the custom file upload label */
 label.file-upload {
     display: inline-block;
     padding: 0.65rem 1.5rem;
     background: var(--accent);
-    color: white;
+    color: var(--primary);
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: 600;
@@ -74,9 +89,8 @@ label.file-upload {
     text-align: center;
 }
 
-/* Hover effect on the file upload label */
 label.file-upload:hover {
-    background: #b89b7e; /* Darker cream */
+    background: #b89b7e;
     box-shadow: 0 0 8px rgba(210, 180, 140, 0.6);
 }
 
@@ -84,7 +98,7 @@ label.file-upload:hover {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #f5f5f5;
+    color: var(--secondary);
 }
 
 .checkbox-group {
@@ -98,18 +112,20 @@ label.file-upload:hover {
     align-items: center;
     gap: 0.25rem;
     cursor: pointer;
+    color: var(--secondary);
 }
 
 select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: #4b3832;
+    background-color: var(--primary);
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 1rem;
     padding-right: 2.5rem;
     cursor: pointer;
+    color: var(--secondary);
 }
 
 input[type="text"]:focus,
@@ -124,6 +140,7 @@ textarea:focus {
 
 textarea {
     resize: vertical;
+    background: var(--primary);
 }
 
 input[type="radio"] {
@@ -149,7 +166,7 @@ input[type="number"].error {
 button,
 a {
     background: var(--accent);
-    color: white;
+    color: var(--primary);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: var(--border-radius);
@@ -157,6 +174,7 @@ a {
     font-size: 1rem;
     font-weight: 600;
     transition: var(--transition);
+    font-family: var(--font-sans);
 }
 
 a {
@@ -178,4 +196,13 @@ div.action {
     .button {
         width: 100%;
     }
+}
+
+/* Optional: Card Component Styling */
+.card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    color: var(--secondary);
 }
